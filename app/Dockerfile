@@ -14,6 +14,11 @@ RUN apt-get update -y && \
   sudo \
   tar
 
+RUN apt-get install -y nodejs npm
+RUN npm install -g n
+RUN n 14.17.0
+RUN apt-get purge -y nodejs npm
+
 RUN mix local.hex --force && \
   mix local.rebar --force
 
