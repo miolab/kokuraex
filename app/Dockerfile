@@ -21,5 +21,8 @@ RUN apt-get purge -y nodejs npm
 
 RUN mix local.hex --force && \
   mix local.rebar --force
+RUN mix archive.install hex phx_new 1.5.9 --force
 
 RUN apt-get clean
+
+CMD [ "mix", "phx.server", "--no-halt" ]
