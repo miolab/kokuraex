@@ -10,5 +10,4 @@ services:
       - PORT=${PHOENIX_PORT}
     stdin_open: true
     tty: true
-    command:
-      - sh -c "mix phx.server --no-halt"
+    command: sh -c "mix phx.server --no-halt"
