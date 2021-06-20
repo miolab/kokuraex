@@ -1,5 +1,7 @@
 # kokuraex
 
+[![miolab](https://circleci.com/gh/miolab/kokuraex.svg?style=svg)](https://github.com/miolab/kokuraex)
+
 # About
 
 This is kokura.ex org site.
