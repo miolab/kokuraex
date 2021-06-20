@@ -1,0 +1,62 @@
+version: 2.1
+
+executors:
+  machine-executor:
+    machine:
+      image: ubuntu-1604:202104-01
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+
+jobs:
+  build:
+    executor:
+      name: machine-executor
+    steps:
+      - checkout
+      - run:
+          name: Build Docker containers
+          command: |
+            set -x
+            docker-compose build
+      - run:
+          name: Mix deps.get & compile
+          command: |
+            set -x
+            docker-compose run --rm app bash -c "mix do deps.get, compile"
+      - run:
+          name: Npm install in assets directory
+          command: |
+            set -x
+            docker-compose run --rm app bash -c "cd assets && npm i && node node_modules/webpack/bin/webpack.js --mode development"
+      - run:
+          name: Mix phx.digest
+          command: |
+            set -x
+            docker-compose run --rm app mix phx.digest
+      - run:
+          name: Run Docker containers
+          command: |
+            set -x
+            docker-compose up -d
+            sleep 3
+            docker ps -f status=running
+            docker-compose logs
+      - run:
+          name: Mix format
+          command: |
+            set -x
+            docker-compose exec app bash -c "mix format --check-formatted"
+      - run:
+          name: Mix test
+          command: |
+            set -x
+            docker-compose exec app bash -c "MIX_ENV=test mix test"
+      - run:
+          name: Finish build
+          command: |
+            set -x
+            echo "Finish build"
