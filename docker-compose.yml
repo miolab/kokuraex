@@ -4,5 +4,10 @@ services:
     build: ./app
     volumes:
       - ./app:/usr/src/app
+    ports:
+      - ${PHOENIX_PORT}:4000
+    environment:
+      - PORT=${PHOENIX_PORT}
     stdin_open: true
     tty: true
+    command: sh -c "mix phx.server --no-halt"
