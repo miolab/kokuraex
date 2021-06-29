@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
   <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>KokuraEx · Phoenix Framework</title>
+    <title>kokura.ex Org [Official]</title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
     <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </head>
@@ -19,8 +19,13 @@
             <% end %>
           </ul>
         </nav>
-        <a href="https://phoenixframework.org/" class="phx-logo">
-          <img src="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" alt="Phoenix Framework Logo"/>
+        <a href="<%= Routes.page_path(@conn, :index) %>" class="phx-logo">
+          <%= tag :img,
+            src: Routes.static_path(@conn, "/images/logoslim.png"),
+            alt: "kokura.ex logo",
+            width: "40",
+            height: "40"
+          %>
         </a>
       </section>
     </header>
