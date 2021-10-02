@@ -20,10 +20,10 @@ RUN apt-get update -y && \
   sudo \
   tar
 
-# RUN apt-get install -y nodejs npm
-# RUN npm install -g n
-# RUN n 16.9.0
-# RUN apt-get purge -y nodejs npm
+RUN apt-get install -y nodejs npm
+RUN npm install -g n
+RUN n 16.9.1
+RUN apt-get purge -y nodejs npm
 
 RUN apt-get clean
 
