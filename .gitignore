@@ -10,7 +10,3 @@ erl_crash.dump
 .elixir_ls/
 
 .env
-
-*.dio
-.DS_Store
-.vscode

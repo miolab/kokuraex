@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
   <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>kokura.ex Org [Official]</title>
+    <title>KokuraEx · Phoenix Framework</title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
-    <link rel="icon" href="<%= Routes.static_path(@conn, "/favicon.ico") %>" />
     <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </head>
   <body>
@@ -20,13 +19,8 @@
             <% end %>
           </ul>
         </nav>
-        <a href="<%= Routes.page_path(@conn, :index) %>" class="phx-logo">
-          <%= tag :img,
-            src: Routes.static_path(@conn, "/images/logoslim.png"),
-            alt: "kokura.ex logo",
-            width: "40",
-            height: "40"
-          %>
+        <a href="https://phoenixframework.org/" class="phx-logo">
+          <img src="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" alt="Phoenix Framework Logo"/>
         </a>
       </section>
     </header>
@@ -39,16 +33,10 @@
         <li>
           <%= link "About", to: Routes.about_path(@conn, :index) %>
         </li>
-        <li>
-          <%= link "Events", to: Routes.events_path(@conn, :index) %>
-        </li>
       </ul>
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
       <%= @inner_content %>
     </main>
-    <footer>
-      - footer sample text -
-    </footer>
   </body>
 </html>
