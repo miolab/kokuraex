@@ -19,6 +19,7 @@ defmodule KokuraexWeb.Router do
 
     get "/", PageController, :index
     get "/about", AboutController, :index
+    get "/event", EventController, :index
   end
 
   # Other scopes may use custom stacks.
