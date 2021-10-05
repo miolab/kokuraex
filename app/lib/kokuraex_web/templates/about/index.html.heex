@@ -1,1 +1,114 @@
-  <h1>About</h1>
+<div class="flex flex-col max-w-3xl mx-auto">
+  <h1 class="text-center text-4xl font-bold text-purple-600">
+    About
+  </h1>
+  <div class="flex flex-col text-center mt-8">
+    <img
+      src={Routes.static_path(@conn, "/images/img_kokuraex_icon.png")}
+      alt="kokura.ex logo"
+      class="w-52 mx-auto"
+    >
+    <p class="mt-8 text-left font-midium">
+      <strong>kokura.ex</strong>は、「高速処理性能」と「高い開発効率性」を両立できるプログラミング言語<strong>Elixir</strong>と、そのWebアプリケーションフレームワーク<strong>Phoenix</strong>を北九州で広め、ワイワイと盛り上げていくコミュニティです。<br>
+      これから北九州で先端技術をやりたい方や、最新のプログラミングを学びたい方、未来に向けてITに強くなりたい方など、技術への興味レベルが高い方や、プログラミングに関心が高い方のご参加を歓迎します。
+    </p>
+    <small class="mt-5 text-left">
+      kokura.ex is a community that promotes the Elixir programming language and its web application framework, Phoenix, in Kitakyushu, where both "high-speed processing performance" and "high development efficiency" can be achieved.<br>
+      We welcome people with a high level of interest in technology and programming, such as those who want to work with cutting-edge technology in Kitakyushu, those who want to learn the latest programming, and those who want to be strong in IT for the future.
+    </small>
+  </div>
+
+  <div class="flex flex-col text-center mt-16">
+    <h1 class="text-center text-4xl font-medium text-gray-600">
+      Elixir / Phoenix
+    </h1>
+    <div class="flex mt-12 mx-auto">
+      <img
+        src={Routes.static_path(@conn, "/images/img_elixir.png")}
+        alt="kokura.ex Logo"
+        class="w-auto h-32"
+      >
+      <img
+        src={Routes.static_path(@conn, "/images/img_phoenix.png")}
+        alt="kokura.ex Logo"
+        class="w-auto h-32"
+      >
+    </div>
+    <div class="mt-12 text-left font-midium">
+      <p>
+        近年のElixir／Phoenixは、
+        <ul>
+          <li>　マルチコアのCPU全てをフル活用できる「Flow」や「GenStage」、</li>
+          <li>　動的生成されたマルチプロセスを監視・自動再起動できる「Dynamic Supervisor」、</li>
+          <li>　Webフレームワーク「Phoenix」のHTTP/2対応やwebpack対応、</li>
+          <li>　IoTコアライブラリ「Nerves」と、クラウド上からファームウェア更新を叶える</li>「NervesHub」
+        </ul>
+        といったElixirならではの革新的な独自機能を出しつつ、「Elixir／Phoenixのみで、Webプロダクト開発やSI案件開発を不自由無く行える」フェーズへと進化しています。
+      </p>
+      <p class="mt-5">
+        2014～2015年付近は、Elixirも未だ未成熟で、「Erlangを覚えなければElixirは使えない」という認識が一般的でしたが、現状は、Elixir単独で充分にプロダクト開発／SI案件開発を行える状況へと変わってきています。<br>
+        また、2017年にはGCP（Google Cloud Platform）でのElixir採用、2018年にはAWSでのカスタムランタイム採用、といった、大手クラウドでのElixir採用という追い風もありました。
+      </p>
+      <p class="mt-5">
+        福岡においても、Elixir／Phoenixをプロダクト開発／SI案件開発で採用されるケースが増え、他言語よりも明らかにレスポンス速度が速いWeb+DBが数日で構築できた事例や、1年以上ダウンせずに運用が回った事例など、実運用の実績も増えています（福岡以外でも、SlackやLINE、ニコニコ動画、mixi、gumi等での活用事例もあります）。<br>
+        全世界で見れば、2014年は、200社程度しか採用していなかったのが、2016年は1,100社を超え、現在は、ゲームサーバだけに限らず、フィンランドやスウェーデン、イギリスを始めとする、金融／証券／SNS／メッセージング基盤などの分野で活用されており、世界的にも有名なSlackやDiscordでも積極的に活用されています。
+      </p>
+      <p class="mt-5">
+        そしてElixir／Phoenixにとっての2019年は、以下を完備し、スマホ開発やクラウドへの接続性も大幅に増強されました。<br>
+        <ul>
+          <li>Phoenixで、JavaScript無のElixirのみで、フロント処理を動的生成できる「LiveView」</li>
+          <li>対障害性を備え、Amazon SQSとも接続できる並列ライブラリ「Broadway」</li>
+          <li>Prometheus等の外部監視系への容易な接続を実現する「Telemetry」</li>
+        今は、まさにElixir／Phoenixを始めるには、もっとも美味しいタイミングと言えるでしょう。
+        </ul>
+      </p>
+      <p class="mt-5">
+        海外と福岡のおける導入企業／規模／事例は、
+        <a
+          href="https://fukuokaex.fun/about"
+          class="font-semibold text-purple-800 hover:opacity-75"
+        >
+          fukuoka.exポータルサイト
+        </a>
+        にて紹介しています。<br>
+        更に、kokura.ex／fukuoka.exでは、これまでの言語では表現できなかったような次世代の高生産性Web／API開発スタイルの確立や、大規模インフラでもDBサーバをネックにしないためのスケールアウトの仕組み、ElixirとGCP上のAIエンジンを繋いだ画像解析システム、数倍のパフォーマンスを発揮できるGPU／FPGA活用、Elixirプロセスよりも更に軽量なプロセスライブラリ実装、ElixirによるElixirコンパイラ開発といった、先端領域でのElixir活用も、今まさに熱く展開しています。
+      </p>
+    </div>
+    <small class="mt-5 text-left">
+      <p>
+        In recent years, Elixir/Phoenix has developed a number of new features;<br>
+        - Flow and GenStage, which allow full utilization of all multi-core CPUs<br>
+        - Dynamic Supervisor, which monitors and automatically restarts dynamically generated multi-processes, and the ability to create new processes<br>
+        - HTTP/2 support and webpack support for the Phoenix web framework<br>
+        - IoT core library "Nerves" and "NervesHub" for firmware updates from the cloud.<br>
+        Elixir is evolving into a phase where web product development and SI project development can be done without any problems using only Elixir/Phoenix.
+      </p>
+      <p class="mt-2">
+        Around 2014-2015, Elixir was still in its infancy, and the general perception was that "if you don't learn Erlang, you can't use Elixir", but the current situation has changed to the point where Elixir alone is sufficient for product development and SI project development.<br>
+        However, the current situation has changed to the point where Elixir is sufficient to develop products and SI projects on its own. In addition, there has been a tailwind from the adoption of Elixir by major clouds, such as the adoption of Elixir by GCP (Google Cloud Platform) in 2017 and the adoption of custom runtimes by AWS in 2018.
+      </p>
+      <p class="mt-2">
+        In Fukuoka, more and more cases of Elixir/Phoenix are being used in product development and SI project development. As a result, there are more and more actual operational results, such as a case where a Web+DB with clearly faster response speed than other languages could be built in a few days and a case where operations ran for more than a year without downtime. (Outside of Fukuoka, there are also use cases at Slack, LINE, Nico Nico Douga, mixi, gumi, etc.).<br>
+        It is currently used not only in game servers but also in finance, securities, SNS, and messaging infrastructure in countries such as Finland, Sweden, and the UK. It is also actively used in the world-famous Slack and Discord.
+      </p>
+      <p class="mt-2">
+        And 2019 for Elixir/Phoenix has been greatly augmented with smartphone development and connectivity to the cloud, complete with the following;<br>
+        - LiveView, which allows Phoenix to generate front-end processing using only Elixir, no JavaScript dynamically<br>
+        - Broadway, a parallel library that is fault-tolerant and can connect to Amazon SQS<br>
+        - Telemetry, which enables easy connection to external monitoring systems such as Prometheus.<br>
+        Now is the best time to start using Elixir/Phoenix.
+      </p>
+      <p class="mt-2">
+        Companies, scale, and case studies overseas and Fukuoka are introduced on the
+        <a
+          href="https://fukuokaex.fun/about"
+          class="font-semibold text-purple-800 hover:opacity-75"
+        >
+          fukuoka.ex portal site.
+        </a>
+        <br>
+        In addition, kokura.ex and fukuoka.ex has established a next-generation high productivity web and API development style that could not be expressed in conventional languages, a scale-out mechanism to avoid bottlenecking the DB server even in a large scale infrastructure, an image analysis system that connects Elixir and an AI engine on GCP, GPU, and FPGA that can perform several times better than the Elixir process, and a system that can be used as a platform for the development of new applications. Elixir is also being used in cutting-edge areas such as image analysis systems that connect Elixir and AI engines on GCP, GPU, and FPGA utilization that can deliver several times higher performance, process library implementations that are even lighter than Elixir processes, and Elixir compiler development using Elixir.
+      </p>
+    </small>
+  </div>
+</div>
