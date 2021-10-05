@@ -9,14 +9,66 @@
     <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
     <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
   </head>
-  <body>
-    <header>
-      <section class="container">
-        <a href="https://phoenixframework.org/" class="phx-logo">
-          <img src={Routes.static_path(@conn, "/images/phoenix.png")} alt="Phoenix Framework Logo"/>
-        </a>
-      </section>
-    </header>
-    <%= @inner_content %>
+  <body class="bg-gradient-to-t from-indigo-300 to-white">
+    <div class="mx-5 mt-3 flex flex-col min-h-screen">
+      <header>
+        <section class="flex">
+          <div class="w-4/12">
+            <a href={Routes.page_path(@conn, :index)}>
+              <img
+                src={Routes.static_path(@conn, "/images/img_header.png")}
+                alt="kokura.ex Logo"
+                class="w-4/6"
+              />
+            </a>
+          </div>
+          <div class="w-6/12">
+          </div>
+          <div class="w-2/12 max-w-xs flex">
+            <a
+              href="https://twitter.com/search?q=%23kokuraex"
+              class="w-1/2 hover:opacity-75"
+            >
+              <img
+                src={Routes.static_path(@conn, "/images/img_twitter.jpg")}
+                alt="twitter #kokuraex"
+                class="rounded-3xl w-5/6"
+              >
+            </a>
+            <a
+              href="https://elixirjp.slack.com/archives/CPMB7CFPZ"
+              class="w-1/2 hover:opacity-75"
+            >
+              <img
+                src={Routes.static_path(@conn, "/images/img_slack.png")}
+                alt="slack #kokura-ex"
+                class="rounded-3xl w-5/6"
+              >
+            </a>
+          </div>
+        </section>
+        <section>
+          <ul class="flex mt-2 text-xl font-bold text-yellow-500 w-2/3 mx-auto sticky">
+            <li class="flex-grow text-center hover:opacity-75">
+              <%= link "Home", to: Routes.page_path(@conn, :index) %>
+            </li>
+            <li class="flex-grow text-center hover:opacity-75">
+              <%= link "About", to: Routes.about_path(@conn, :index) %>
+            </li>
+            <li class="flex-grow text-center hover:opacity-75">
+              <%= link "Event", to: Routes.event_path(@conn, :index) %>
+            </li>
+          </ul>
+        </section>
+      </header>
+
+      <main class="flex-grow mt-8 text-gray-800">
+        <%= @inner_content %>
+      </main>
+
+      <footer class="text-center mt-16 mb-3">
+        <p>© 2021 kokura.ex</p>
+      </footer>
+    </div>
   </body>
 </html>
