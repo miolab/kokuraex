@@ -1,41 +1,27 @@
-<section class="phx-hero">
-  <h1 class="font-medium text-4xl text-indigo-600"><%= gettext "Welcome to %{name}!", name: "Phoenix" %></h1>
-  <p>Peace of mind from prototype to production</p>
-</section>
+<div class="flex flex-col">
+  <div class="flex flex-col text-center">
+    <h1 class="text-lg font-bold text-purple-600">
+      kokura.exは開発言語Elixirをわいわい盛り上げていく技術コミュニティです
+    </h1>
+    <p class="text-gray-500">
+      kokura.ex is a technical community that promotes the Elixir language with fun and exciting
+    </p>
+  </div>
 
-<section class="row">
-  <article class="column">
-    <h2>Resources</h2>
-    <ul>
-      <li>
-        <a href="https://hexdocs.pm/phoenix/overview.html">Guides &amp; Docs</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix">Source</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix/blob/v1.6/CHANGELOG.md">v1.6 Changelog</a>
-      </li>
-    </ul>
-  </article>
-  <article class="column">
-    <h2>Help</h2>
-    <ul>
-      <li>
-        <a href="https://elixirforum.com/c/phoenix-forum">Forum</a>
-      </li>
-      <li>
-        <a href="https://web.libera.chat/#elixir">#elixir on Libera Chat (IRC)</a>
-      </li>
-      <li>
-        <a href="https://twitter.com/elixirphoenix">Twitter @elixirphoenix</a>
-      </li>
-      <li>
-        <a href="https://elixir-slackin.herokuapp.com/">Elixir on Slack</a>
-      </li>
-      <li>
-        <a href="https://discord.gg/elixir">Elixir on Discord</a>
-      </li>
-    </ul>
-  </article>
-</section>
+  <figure class="mt-3 mb-8 mx-auto">
+    <img
+      src={Routes.static_path(@conn, "/images/img_kokuraex.png")}
+      alt="kokura.ex"
+      class="rounded-md"
+    >
+  </figure>
+
+  <div class="max-w-2xl mx-auto">
+    <p class="font-midium mb-3">
+      <strong>kokura.ex</strong>は、「高速処理性能」と「高い開発効率性」を両立できるプログラミング言語<strong>Elixir</strong>と、そのWebアプリケーションフレームワーク<strong>Phoenix</strong>を北九州で広め、ワイワイと盛り上げていくコミュニティです。
+    </p>
+    <p>
+      kokura.ex is a community that promotes the Elixir programming language and its web application framework, Phoenix, in Kitakyushu, where both "high-speed processing performance" and "high development efficiency" can be achieved.
+    </p>
+  </div>
+</div>
