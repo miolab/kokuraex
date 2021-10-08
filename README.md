@@ -10,8 +10,8 @@ This is kokura.ex org website.
 
 - Elixir 1.12.2 (Erlang/OTP 24)
 - Phoenix 1.16.0
-- Node.js v16.9.0
-- Tailwind CSS 2.2.8
+- Node.js v16.9
+- Tailwind CSS 2.2
 
 ## CI/CD tool
 

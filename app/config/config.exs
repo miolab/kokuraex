@@ -10,6 +10,7 @@ import Config
 # Configures the endpoint
 config :kokuraex, KokuraexWeb.Endpoint,
   url: [host: "localhost"],
+  secret_key_base: System.get_env("SECRET_KEY_BASE"),
   render_errors: [view: KokuraexWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: Kokuraex.PubSub,
   live_view: [signing_salt: "zWRTHO0g"]
