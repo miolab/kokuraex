@@ -4,7 +4,9 @@
 
 # About
 
-This is kokura.ex org website.
+This repository is for the development of __kokura.ex__'s org website.
+
+![system_diagram 001](https://user-images.githubusercontent.com/33124627/136857102-179c26ed-7e01-449a-98c9-07e433f7ab87.jpeg)
 
 ## Versions
 
