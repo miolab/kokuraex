@@ -4,16 +4,41 @@
   </h1>
   <div class="flex flex-col text-center mt-8">
     <table class="table-auto">
-      <thead>
-        <tr>
-          <th>Sample</th>
+      <%# TODO: テーブルのスタイルを整える %>
+      <caption>[WIP] Connpass Events</caption>
+      <%= for event <- @events do %>
+        <tr class="border">
+          <th>Title</th>
+          <td class="font-bold">
+            <%= event.title %>
+          </td>
         </tr>
-      </thead>
-      <tbody>
         <tr>
-          <td class="border"><%= @text %></td>
+          <th>Daytime</th>
+          <td>
+            <%= event.started_at %> - <%= event.ended_at %>
+          </td>
         </tr>
-      </tbody>
+        <tr>
+          <th>About</th>
+          <td>
+            <%= event.catch %>
+          </td>
+        </tr>
+        <tr>
+          <th>Where</th>
+          <td>
+            <%= event.address %>
+          </td>
+        </tr>
+        <tr>
+          <th>URL</th>
+          <td>
+            <%= event.event_url %>
+          </td>
+        </tr>
+        <br>
+      <% end %>
     </table>
   </div>
 </div>
