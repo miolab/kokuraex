@@ -2,7 +2,7 @@ defmodule KokuraexWeb.EventController do
   use KokuraexWeb, :controller
 
   def index(conn, _params) do
-    events_arr = connpass_events()
+    events_arr = connpass_events("kokura_ex", "5")
 
     render(
       conn,
@@ -11,22 +11,29 @@ defmodule KokuraexWeb.EventController do
     )
   end
 
-  def connpass_events() do
-    connpass_url = "https://connpass.com/api/v1/event/?keyword=kokura_ex&order=2&count=5"
+  def get_connpass_events(keyword, count) do
+    "https://connpass.com/api/v1/event/?keyword=#{keyword}&order=2&count=#{count}"
+    |> HTTPoison.get!()
+  end
 
-    res =
-      HTTPoison.get!(connpass_url)
-      |> Map.get(:body)
-      |> Jason.decode!()
-
+  def connpass_events(keyword, count) do
     # TODO: エラーハンドリング
-    # - 200じゃない場合
+    # - get_connpass_events(keyword, count)が、:error の場合
     # - カラの場合
     # - 正常系
     # Map.has_key?()
 
-    # TODO: イメージキャプチャも（もしあれば）
-    res["events"]
+    res =
+      get_connpass_events(keyword, count)
+      |> Map.get(:body)
+      |> Jason.decode!()
+
+    events = res["events"]
+
+    # TODO: エラー時にカラを返すか、テスト書く（もしくは両方）
+    # Map.has_key?()
+
+    events
     |> Enum.map(
       &%{
         :title => &1["title"],
