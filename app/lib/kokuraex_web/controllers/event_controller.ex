@@ -2,12 +2,11 @@ defmodule KokuraexWeb.EventController do
   use KokuraexWeb, :controller
 
   def index(conn, _params) do
-    events_arr = connpass_events("kokura_ex", "5")
-
     render(
       conn,
       "index.html",
-      events: events_arr
+      kokura_events: connpass_events("kokura_ex", "5"),
+      pelemay_events: connpass_events("Pelemay Meetup SIMD勉強会", "3")
     )
   end
 
