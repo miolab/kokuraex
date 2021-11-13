@@ -20,7 +20,7 @@ defmodule KokuraexWeb.EventController do
     case res do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} -> body
       {:ok, %HTTPoison.Response{status_code: 404}} -> :httpoison_notfound
-      {:error, %HTTPoison.Error{reason: reason}} -> :httpoison_error
+      {:error, %HTTPoison.Error{reason: _}} -> :httpoison_error
       _ -> :httpoison_unknown
     end
   end
