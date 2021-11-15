@@ -10,11 +10,7 @@ defmodule KokuraexWeb.EventController do
           "kokura_ex",
           "5"
         ),
-      pelemay_events:
-        connpass_events(
-          "Pelemay Meetup SIMD勉強会",
-          "3"
-        )
+      pelemay_events: pelemay_connpass_events()
     )
   end
 
@@ -82,6 +78,38 @@ defmodule KokuraexWeb.EventController do
             )
         end
     end
+  end
+
+  def pelemay_connpass_events() do
+    [
+      pelemay_simd_meetup(),
+      pelemay_beam_otp_meetup(),
+      pelemay_history_meetup()
+    ]
+    |> Enum.concat()
+    |> Enum.sort_by(& &1.started_at, :desc)
+    |> Enum.take(5)
+  end
+
+  def pelemay_simd_meetup() do
+    connpass_events(
+      "Pelemay Meetup SIMD勉強会",
+      "3"
+    )
+  end
+
+  def pelemay_beam_otp_meetup() do
+    connpass_events(
+      "「BEAM/OTP対話」",
+      "3"
+    )
+  end
+
+  def pelemay_history_meetup() do
+    connpass_events(
+      "Pelemayの歴史を振り返る会",
+      "2"
+    )
   end
 
   def default_events_map() do

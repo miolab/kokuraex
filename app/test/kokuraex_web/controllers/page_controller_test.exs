@@ -103,4 +103,12 @@ defmodule KokuraexWeb.PageControllerTest do
 
     assert hd === expected
   end
+
+  test "test_pelemayのconnpassイベント数が意図した数値で取得できる" do
+    actual =
+      pelemay_connpass_events()
+      |> Enum.count()
+
+    assert actual == 5
+  end
 end
