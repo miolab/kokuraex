@@ -41,19 +41,30 @@ defmodule KokuraexWeb.EventController do
 
     case res do
       :httpoison_notfound ->
-        default_events_map()
+        [
+          default_events_map()
+        ]
 
       :httpoison_error ->
-        %{default_events_map() | title: "Fetch Error"}
+        [
+          %{default_events_map() | title: "Fetch Error"}
+        ]
 
       :httpoison_unknown ->
-        %{default_events_map() | title: "Unknown Error"}
+        [
+          %{default_events_map() | title: "Unknown Error"}
+        ]
 
       _ ->
         res_decoded = Jason.decode!(res)
 
         cond do
-          Map.has_key?(res_decoded, "events") ->
+          res_decoded["events"] |> Enum.empty?() ->
+            [
+              %{default_events_map() | title: "No events found"}
+            ]
+
+          true ->
             res_decoded["events"]
             |> Enum.map(
               &%{
@@ -66,9 +77,6 @@ defmodule KokuraexWeb.EventController do
                   event_url: &1["event_url"]
               }
             )
-
-          true ->
-            %{default_events_map() | title: "Events Empty"}
         end
     end
   end
