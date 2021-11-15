@@ -5,15 +5,24 @@ defmodule KokuraexWeb.EventController do
     render(
       conn,
       "index.html",
-      kokura_events: connpass_events("kokura_ex", "5"),
-      pelemay_events: connpass_events("Pelemay Meetup SIMD勉強会", "3")
+      kokura_events:
+        connpass_events(
+          "kokura_ex",
+          "5"
+        ),
+      pelemay_events:
+        connpass_events(
+          "Pelemay Meetup SIMD勉強会",
+          "3"
+        )
     )
   end
 
+  # TODO: EventControllerから別ファイルへメソッドを切り出す
+
   def get_connpass_events(keyword, count) do
-    res =
-      "https://connpass.com/api/v1/event/?keyword=#{keyword}&order=2&count=#{count}"
-      |> HTTPoison.get()
+    "https://connpass.com/api/v1/event/?keyword=#{keyword}&order=2&count=#{count}"
+    |> HTTPoison.get()
   end
 
   def handle_httpoison_result(res) do

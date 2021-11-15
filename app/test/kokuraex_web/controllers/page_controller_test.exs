@@ -16,7 +16,7 @@ defmodule KokuraexWeb.PageControllerTest do
     assert html_response(conn, 200) =~ "Event"
   end
 
-  # TODO: あとでEventController用のテストを各メソッドごとに切り出す
+  # TODO: EventController用のテストを各メソッドごとに切り出す
   # NITS: testメッセージ英語化
   import KokuraexWeb.EventController
 
@@ -44,7 +44,7 @@ defmodule KokuraexWeb.PageControllerTest do
     assert result === :httpoison_error
   end
 
-  test "test_異常系_`handle_httpoison_result/1`でエラーキャッチできない場合は`:httpoison_unknown`を返す" do
+  test "test_異常系_`handle_httpoison_result/1`でエラーキャッチできなかったら`:httpoison_unknown`を返す" do
     result =
       "Unknown result"
       |> handle_httpoison_result()
