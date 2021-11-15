@@ -47,7 +47,8 @@ defmodule Kokuraex.MixProject do
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
       {:httpoison, "~> 1.8"},
-      {:phx_gen_tailwind, "~> 0.1.3"}
+      {:phx_gen_tailwind, "~> 0.1.3"},
+      {:mix_test_watch, "~> 1.1", only: :test, runtime: false}
     ]
   end
 
