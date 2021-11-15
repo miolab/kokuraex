@@ -56,16 +56,19 @@ defmodule KokuraexWeb.EventController do
         ]
 
       _ ->
-        res_decoded = Jason.decode!(res)
+        res_decoded_events =
+          res
+          |> Jason.decode!()
+          |> Map.get("events")
 
         cond do
-          res_decoded["events"] |> Enum.empty?() ->
+          res_decoded_events |> Enum.empty?() ->
             [
               %{default_events_map() | title: "No events found"}
             ]
 
           true ->
-            res_decoded["events"]
+            res_decoded_events
             |> Enum.map(
               &%{
                 default_events_map()
