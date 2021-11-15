@@ -65,13 +65,42 @@ defmodule KokuraexWeb.PageControllerTest do
     assert default_events_map() === @default_events_map
   end
 
-  test "test_kokura.exのconnpassイベントが取得できる" do
-    [h | _] = connpass_events("kokura_ex", "2")
+  test "test_kokura.exのconnpassイベントが取得できる（該当イベント数が1件のケース）" do
+    [hd | _] = connpass_events("kokura_ex", "1")
 
     result =
-      Map.get(h, :title)
+      Map.get(hd, :title)
       |> String.contains?("kokura.ex")
 
     assert result === true
+  end
+
+  test "test_kokura.exのconnpassイベントが取得できる（該当イベント数が2件以上のケース）" do
+    [hd | _] = connpass_events("kokura_ex", "3")
+
+    result =
+      Map.get(hd, :title)
+      |> String.contains?("kokura.ex")
+
+    assert result === true
+  end
+
+  test "test_該当イベントが存在しなかった場合は`No events found`タイトルを表示する" do
+    [hd | _] =
+      connpass_events(
+        "hard_to_exist_event_keyword_foo_bar_foo_bar",
+        "3"
+      )
+
+    expected = %{
+      address: "-",
+      catch: "-",
+      ended_at: "-",
+      event_url: "https://kokura-ex.herokuapp.com/",
+      started_at: "-",
+      title: "No events found"
+    }
+
+    assert hd === expected
   end
 end
