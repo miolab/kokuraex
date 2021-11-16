@@ -48,42 +48,52 @@ defmodule KokuraexWeb.EventFunctionTest do
   end
 
   test "test_kokura.exのconnpassイベントが取得できる（該当イベント数が1件のケース）" do
-    [hd | _] = connpass_events("kokura_ex", "1")
+    result = connpass_events("kokura_ex", "1")
 
-    result =
-      Map.get(hd, :title)
+    assert Enum.count(result) == 1
+
+    has_kokura_ex =
+      result
+      |> List.first()
+      |> Map.get(:title)
       |> String.contains?("kokura.ex")
 
-    assert result === true
+    assert has_kokura_ex === true
   end
 
   test "test_kokura.exのconnpassイベントが取得できる（該当イベント数が2件以上のケース）" do
-    [hd | _] = connpass_events("kokura_ex", "3")
+    result = connpass_events("kokura_ex", "3")
 
-    result =
-      Map.get(hd, :title)
+    assert Enum.count(result) == 3
+
+    has_kokura_ex =
+      result
+      |> List.first()
+      |> Map.get(:title)
       |> String.contains?("kokura.ex")
 
-    assert result === true
+    assert has_kokura_ex === true
   end
 
   test "test_該当イベントが存在しなかった場合は`No events found`タイトルを表示する" do
-    [hd | _] =
+    actual =
       connpass_events(
         "hard_to_exist_event_keyword_foo_bar_foo_bar",
         "3"
       )
 
-    expected = %{
-      address: "-",
-      catch: "-",
-      ended_at: "-",
-      event_url: "https://kokura-ex.herokuapp.com/",
-      started_at: "-",
-      title: "No events found"
-    }
+    expected = [
+      %{
+        address: "-",
+        catch: "-",
+        ended_at: "-",
+        event_url: "https://kokura-ex.herokuapp.com/",
+        started_at: "-",
+        title: "No events found"
+      }
+    ]
 
-    assert hd === expected
+    assert actual === expected
   end
 
   test "test_pelemayのconnpassイベント数が意図した数値で取得できる" do
