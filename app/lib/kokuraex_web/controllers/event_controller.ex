@@ -6,11 +6,7 @@ defmodule KokuraexWeb.EventController do
     render(
       conn,
       "index.html",
-      kokura_events:
-        connpass_events(
-          "kokura_ex",
-          "5"
-        ),
+      kokura_events: kokuraex_connpass_events(),
       pelemay_events: pelemay_connpass_events()
     )
   end

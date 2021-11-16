@@ -63,6 +63,13 @@ defmodule KokuraexWeb.EventFunction do
     end
   end
 
+  def kokuraex_connpass_events() do
+    connpass_events(
+      "kokura_ex",
+      "5"
+    )
+  end
+
   def pelemay_connpass_events() do
     [
       pelemay_simd_meetup(),
