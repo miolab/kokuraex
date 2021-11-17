@@ -2,6 +2,7 @@ defmodule KokuraexWeb.EventFunction do
   @moduledoc """
   Conveniences for handling of community's event informations.
   """
+  import KokuraexWeb.DatetimeFunction
 
   def get_connpass_events(keyword, count) do
     "https://connpass.com/api/v1/event/?keyword=#{keyword}&order=2&count=#{count}"
@@ -56,8 +57,8 @@ defmodule KokuraexWeb.EventFunction do
               &%{
                 default_events_map()
                 | title: &1["title"],
-                  started_at: &1["started_at"],
-                  ended_at: &1["ended_at"],
+                  started_at: &1["started_at"] |> datetime_from_iso8601() |> return_datetime(),
+                  ended_at: &1["ended_at"] |> datetime_from_iso8601() |> return_datetime(),
                   catch: &1["catch"],
                   address: &1["address"],
                   event_url: &1["event_url"]
