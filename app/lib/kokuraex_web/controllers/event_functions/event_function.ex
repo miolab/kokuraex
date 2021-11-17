@@ -1,4 +1,8 @@
 defmodule KokuraexWeb.EventFunction do
+  @moduledoc """
+  Conveniences for handling of community's event informations.
+  """
+
   def get_connpass_events(keyword, count) do
     "https://connpass.com/api/v1/event/?keyword=#{keyword}&order=2&count=#{count}"
     |> HTTPoison.get()
