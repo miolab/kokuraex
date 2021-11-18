@@ -2,22 +2,32 @@ defmodule KokuraexWeb.EventFunction do
   @moduledoc """
   Conveniences for handling of community's event informations.
   """
+
   import KokuraexWeb.DatetimeFunction
 
+  @doc """
+  GET event data from connmass API.
+  """
   def get_connpass_events(keyword, count) do
     "https://connpass.com/api/v1/event/?keyword=#{keyword}&order=2&count=#{count}"
     |> HTTPoison.get()
   end
 
-  def handle_httpoison_result(res) do
-    case res do
-      {:ok, %HTTPoison.Response{status_code: 200, body: body}} -> body
-      {:ok, %HTTPoison.Response{status_code: 404}} -> :httpoison_notfound
-      {:error, %HTTPoison.Error{reason: _}} -> :httpoison_error
-      _ -> :httpoison_unknown
-    end
-  end
+  @doc """
+  Handle result of HTTPoison response.
+  """
+  def handle_httpoison_result({:ok, %HTTPoison.Response{status_code: 200, body: body}}), do: body
 
+  def handle_httpoison_result({:ok, %HTTPoison.Response{status_code: 404}}),
+    do: :httpoison_notfound
+
+  def handle_httpoison_result({:error, %HTTPoison.Error{reason: _}}), do: :httpoison_error
+
+  def handle_httpoison_result(res), do: :httpoison_unknown
+
+  @doc """
+  Return array include connpass events Map.
+  """
   def connpass_events(keyword, count) do
     res =
       get_connpass_events(keyword, count)
@@ -68,6 +78,9 @@ defmodule KokuraexWeb.EventFunction do
     end
   end
 
+  @doc """
+  Return array include kokura.ex's connpass events Map.
+  """
   def kokuraex_connpass_events() do
     connpass_events(
       "kokura_ex",
@@ -75,6 +88,9 @@ defmodule KokuraexWeb.EventFunction do
     )
   end
 
+  @doc """
+  Return array include Pelemay Meetup's connpass events Map.
+  """
   def pelemay_connpass_events() do
     [
       pelemay_simd_meetup(),
@@ -86,6 +102,9 @@ defmodule KokuraexWeb.EventFunction do
     |> Enum.take(5)
   end
 
+  @doc """
+  Return array include connpass events of "Pelemay Meetup SIMD勉強会" Map.
+  """
   def pelemay_simd_meetup() do
     connpass_events(
       "Pelemay Meetup SIMD勉強会",
@@ -93,6 +112,9 @@ defmodule KokuraexWeb.EventFunction do
     )
   end
 
+  @doc """
+  Return array include connpass events of "「BEAM/OTP対話」" Map.
+  """
   def pelemay_beam_otp_meetup() do
     connpass_events(
       "「BEAM/OTP対話」",
@@ -100,6 +122,9 @@ defmodule KokuraexWeb.EventFunction do
     )
   end
 
+  @doc """
+  Return array include connpass events of "Pelemayの歴史を振り返る会" Map.
+  """
   def pelemay_history_meetup() do
     connpass_events(
       "Pelemayの歴史を振り返る会",
@@ -107,6 +132,9 @@ defmodule KokuraexWeb.EventFunction do
     )
   end
 
+  @doc """
+  Return default events Map format.
+  """
   def default_events_map() do
     %{
       title: "Not Found",
