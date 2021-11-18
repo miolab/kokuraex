@@ -9,15 +9,21 @@ defmodule KokuraexWeb.EventFunction do
     |> HTTPoison.get()
   end
 
-  def handle_httpoison_result(res) do
-    case res do
-      {:ok, %HTTPoison.Response{status_code: 200, body: body}} -> body
-      {:ok, %HTTPoison.Response{status_code: 404}} -> :httpoison_notfound
-      {:error, %HTTPoison.Error{reason: _}} -> :httpoison_error
-      _ -> :httpoison_unknown
-    end
-  end
+  @doc """
+  Handle result of HTTPoison response.
+  """
+  def handle_httpoison_result({:ok, %HTTPoison.Response{status_code: 200, body: body}}), do: body
 
+  def handle_httpoison_result({:ok, %HTTPoison.Response{status_code: 404}}),
+    do: :httpoison_notfound
+
+  def handle_httpoison_result({:error, %HTTPoison.Error{reason: _}}), do: :httpoison_error
+
+  def handle_httpoison_result(res), do: :httpoison_unknown
+
+  @doc """
+  Return array include connpass events Map.
+  """
   def connpass_events(keyword, count) do
     res =
       get_connpass_events(keyword, count)
