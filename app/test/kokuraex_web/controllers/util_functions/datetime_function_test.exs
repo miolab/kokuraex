@@ -30,4 +30,36 @@ defmodule KokuraexWeb.DatetimeFunctionTest do
 
     assert actual === "0000-00-00 00:00(JST)"
   end
+
+  defp current_jst_naivedatetime() do
+    {:ok, naive} =
+      current_jst_datetime()
+      |> NaiveDateTime.from_iso8601()
+
+    naive
+  end
+
+  test "test_取得したJST現在時刻がNaiveDateTime形式であることを保証する" do
+    # FIXME: 暫定的に、西暦4桁年/1or2桁月/分のパラメータを持っていることでジャッジしている
+    has_year =
+      current_jst_naivedatetime().year
+      |> Integer.to_string()
+      |> String.match?(~r/\d{4}/)
+
+    assert has_year === true
+
+    has_month =
+      current_jst_naivedatetime().month
+      |> Integer.to_string()
+      |> String.match?(~r/[1-9]|1[0-2]/)
+
+    assert has_month === true
+
+    has_minute =
+      current_jst_naivedatetime().minute
+      |> Integer.to_string()
+      |> String.match?(~r/[0-5]?\d/)
+
+    assert has_minute === true
+  end
 end

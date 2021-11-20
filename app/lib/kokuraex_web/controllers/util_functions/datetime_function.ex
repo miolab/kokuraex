@@ -23,4 +23,12 @@ defmodule KokuraexWeb.DatetimeFunction do
   end
 
   def return_datetime({:error, _}), do: "0000-00-00 00:00(JST)"
+
+  @doc """
+  現在のJST時刻を取得する
+  """
+  def current_jst_datetime() do
+    Timex.now("Japan")
+    |> DateTime.to_iso8601()
+  end
 end
