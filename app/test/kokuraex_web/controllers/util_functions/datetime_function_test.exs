@@ -62,4 +62,14 @@ defmodule KokuraexWeb.DatetimeFunctionTest do
 
     assert has_minute === true
   end
+
+  test "test_ISO8601形式を持つ特定の日時がJST現在日時より過去の日付だったらltを返す" do
+    actual = compare_date_with_current_jst_date("2000-01-01T00:00:00+09:00")
+    assert actual == :lt
+  end
+
+  test "test_ISO8601形式を持つ特定の日時がJST現在日時より未来の日付だったらgtを返す" do
+    actual = compare_date_with_current_jst_date("3000-01-01T00:00:00+09:00")
+    assert actual == :gt
+  end
 end
