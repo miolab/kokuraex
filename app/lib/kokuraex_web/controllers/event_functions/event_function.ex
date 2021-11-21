@@ -69,6 +69,8 @@ defmodule KokuraexWeb.EventFunction do
                 | title: &1["title"],
                   started_at: &1["started_at"] |> datetime_from_iso8601() |> return_datetime(),
                   ended_at: &1["ended_at"] |> datetime_from_iso8601() |> return_datetime(),
+                  is_coming_date:
+                    &1["ended_at"] |> compare_date_with_current_jst_date() |> is_eq_or_gt_atom(),
                   catch: &1["catch"],
                   address: &1["address"],
                   event_url: &1["event_url"]
@@ -144,6 +146,7 @@ defmodule KokuraexWeb.EventFunction do
       title: "Not Found",
       started_at: "-",
       ended_at: "-",
+      is_coming_date: false,
       catch: "-",
       address: "-",
       event_url: "https://kokura-ex.herokuapp.com/"

@@ -38,6 +38,7 @@ defmodule KokuraexWeb.EventFunctionTest do
     address: "-",
     catch: "-",
     ended_at: "-",
+    is_coming_date: false,
     event_url: "https://kokura-ex.herokuapp.com/",
     started_at: "-",
     title: "Not Found"
@@ -88,6 +89,7 @@ defmodule KokuraexWeb.EventFunctionTest do
         address: "-",
         catch: "-",
         ended_at: "-",
+        is_coming_date: false,
         event_url: "https://kokura-ex.herokuapp.com/",
         started_at: "-",
         title: "No events found"
