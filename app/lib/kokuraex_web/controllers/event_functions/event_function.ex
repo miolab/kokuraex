@@ -8,8 +8,8 @@ defmodule KokuraexWeb.EventFunction do
   @doc """
   GET event data from connmass API.
   """
-  def get_connpass_events(keyword, count) do
-    "https://connpass.com/api/v1/event/?keyword=#{keyword}&order=2&count=#{count}"
+  def get_connpass_events(keyword, nickname, count) do
+    "https://connpass.com/api/v1/event/?keyword=#{keyword}&nickname=#{nickname}&order=2&count=#{count}"
     |> HTTPoison.get()
   end
 
@@ -28,9 +28,9 @@ defmodule KokuraexWeb.EventFunction do
   @doc """
   Return array include connpass events Map.
   """
-  def connpass_events(keyword, count) do
+  def connpass_events(keyword, nickname, count) do
     res =
-      get_connpass_events(keyword, count)
+      get_connpass_events(keyword, nickname, count)
       |> handle_httpoison_result()
 
     case res do
@@ -84,6 +84,7 @@ defmodule KokuraexWeb.EventFunction do
   def kokuraex_connpass_events() do
     connpass_events(
       "kokura_ex",
+      "imlab",
       "5"
     )
   end
@@ -108,6 +109,7 @@ defmodule KokuraexWeb.EventFunction do
   def pelemay_simd_meetup() do
     connpass_events(
       "Pelemay Meetup SIMD勉強会",
+      "zacky1972",
       "3"
     )
   end
@@ -118,6 +120,7 @@ defmodule KokuraexWeb.EventFunction do
   def pelemay_beam_otp_meetup() do
     connpass_events(
       "「BEAM/OTP対話」",
+      "zacky1972",
       "3"
     )
   end
@@ -128,6 +131,7 @@ defmodule KokuraexWeb.EventFunction do
   def pelemay_history_meetup() do
     connpass_events(
       "Pelemayの歴史を振り返る会",
+      "zacky1972",
       "2"
     )
   end
