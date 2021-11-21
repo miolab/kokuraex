@@ -30,4 +30,52 @@ defmodule KokuraexWeb.DatetimeFunctionTest do
 
     assert actual === "0000-00-00 00:00(JST)"
   end
+
+  defp current_jst_naivedatetime() do
+    {:ok, naive} =
+      current_jst_datetime()
+      |> NaiveDateTime.from_iso8601()
+
+    naive
+  end
+
+  test "test_取得したJST現在時刻がNaiveDateTime形式であることを保証する" do
+    # FIXME: 暫定的に、西暦4桁年/1or2桁月/分のパラメータを持っていることでジャッジしている
+    has_year =
+      current_jst_naivedatetime().year
+      |> Integer.to_string()
+      |> String.match?(~r/\d{4}/)
+
+    assert has_year === true
+
+    has_month =
+      current_jst_naivedatetime().month
+      |> Integer.to_string()
+      |> String.match?(~r/[1-9]|1[0-2]/)
+
+    assert has_month === true
+
+    has_minute =
+      current_jst_naivedatetime().minute
+      |> Integer.to_string()
+      |> String.match?(~r/[0-5]?\d/)
+
+    assert has_minute === true
+  end
+
+  test "test_ISO8601形式を持つ特定の日時がJST現在日時より過去の日付だったらltを返す" do
+    actual = compare_date_with_current_jst_date("2000-01-01T00:00:00+09:00")
+    assert actual == :lt
+  end
+
+  test "test_ISO8601形式を持つ特定の日時がJST現在日時より未来の日付だったらgtを返す" do
+    actual = compare_date_with_current_jst_date("3000-01-01T00:00:00+09:00")
+    assert actual == :gt
+  end
+
+  test "test_`:eq`か`:gt`ならtrue、`:lt`ならfalseを返す" do
+    assert is_eq_or_gt_atom(:eq) === true
+    assert is_eq_or_gt_atom(:gt) === true
+    assert is_eq_or_gt_atom(:lt) === false
+  end
 end

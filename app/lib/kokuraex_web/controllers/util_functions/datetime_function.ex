@@ -14,13 +14,46 @@ defmodule KokuraexWeb.DatetimeFunction do
   @doc """
   JST日時 {:ok, ~N[2021-01-01 00:00:00]} 形式を、"2021-01-01 00:00(JST)" 文字列に置換する
   """
-  def return_datetime({:ok, body}) do
+  def return_datetime({:ok, naive}) do
     datetime =
-      body
+      naive
       |> NaiveDateTime.to_string()
 
     Regex.replace(~r/:\d{2}$/, datetime, "(JST)")
   end
 
   def return_datetime({:error, _}), do: "0000-00-00 00:00(JST)"
+
+  @doc """
+  現在のJST時刻を取得してISO8601形式で返す
+  """
+  def current_jst_datetime() do
+    Timex.now("Japan")
+    |> DateTime.to_iso8601()
+  end
+
+  @doc """
+  ISO8601形式を持つ特定の日時をJST現在日時と日付比較し結果を返す
+  """
+  def compare_date_with_current_jst_date(datetime_iso8601) do
+    {:ok, naive} =
+      datetime_iso8601
+      |> datetime_from_iso8601()
+
+    {:ok, current_jst_date} =
+      current_jst_datetime()
+      |> datetime_from_iso8601()
+
+    Date.compare(
+      naive |> NaiveDateTime.to_date(),
+      current_jst_date |> NaiveDateTime.to_date()
+    )
+  end
+
+  @doc """
+  :eqか:gtならtrue、:ltならfalseを返す
+  """
+  def is_eq_or_gt_atom(:eq), do: true
+  def is_eq_or_gt_atom(:gt), do: true
+  def is_eq_or_gt_atom(:lt), do: false
 end

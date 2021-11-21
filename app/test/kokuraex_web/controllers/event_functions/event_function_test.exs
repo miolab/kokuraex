@@ -4,7 +4,7 @@ defmodule KokuraexWeb.EventFunctionTest do
 
   test "test_HTTPoisonでconnpass APIに対してkeyword=kokura_exで叩いてGETできる" do
     result =
-      get_connpass_events("kokura_ex", "2")
+      get_connpass_events("kokura_ex", "imlab", "2")
       |> elem(0)
 
     assert result === :ok
@@ -38,6 +38,7 @@ defmodule KokuraexWeb.EventFunctionTest do
     address: "-",
     catch: "-",
     ended_at: "-",
+    is_coming_date: false,
     event_url: "https://kokura-ex.herokuapp.com/",
     started_at: "-",
     title: "Not Found"
@@ -48,7 +49,7 @@ defmodule KokuraexWeb.EventFunctionTest do
   end
 
   test "test_kokura.exのconnpassイベントが取得できる（該当イベント数が1件のケース）" do
-    result = connpass_events("kokura_ex", "1")
+    result = connpass_events("kokura_ex", "imlab", "1")
 
     assert Enum.count(result) == 1
 
@@ -62,7 +63,7 @@ defmodule KokuraexWeb.EventFunctionTest do
   end
 
   test "test_kokura.exのconnpassイベントが取得できる（該当イベント数が2件以上のケース）" do
-    result = connpass_events("kokura_ex", "3")
+    result = connpass_events("kokura_ex", "imlab", "3")
 
     assert Enum.count(result) == 3
 
@@ -79,6 +80,7 @@ defmodule KokuraexWeb.EventFunctionTest do
     actual =
       connpass_events(
         "hard_to_exist_event_keyword_foo_bar_foo_bar",
+        "hard_to_exist_too_long_named_person_foo_bar_foo_bar",
         "3"
       )
 
@@ -87,6 +89,7 @@ defmodule KokuraexWeb.EventFunctionTest do
         address: "-",
         catch: "-",
         ended_at: "-",
+        is_coming_date: false,
         event_url: "https://kokura-ex.herokuapp.com/",
         started_at: "-",
         title: "No events found"
