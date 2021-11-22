@@ -4,6 +4,7 @@ defmodule KokuraexWeb.EventFunction do
   """
 
   import KokuraexWeb.DatetimeFunction
+  import KokuraexWeb.UtilFunction
 
   @doc """
   GET event data from connmass API.
