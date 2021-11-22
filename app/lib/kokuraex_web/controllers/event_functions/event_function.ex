@@ -23,7 +23,7 @@ defmodule KokuraexWeb.EventFunction do
 
   def handle_httpoison_result({:error, %HTTPoison.Error{reason: _}}), do: :httpoison_error
 
-  def handle_httpoison_result(res), do: :httpoison_unknown
+  def handle_httpoison_result(_), do: :httpoison_unknown
 
   @doc """
   Return array include connpass events Map.
