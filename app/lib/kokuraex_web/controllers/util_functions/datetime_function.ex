@@ -49,11 +49,4 @@ defmodule KokuraexWeb.DatetimeFunction do
       current_jst_date |> NaiveDateTime.to_date()
     )
   end
-
-  @doc """
-  :eqか:gtならtrue、:ltならfalseを返す
-  """
-  def is_eq_or_gt_atom(:eq), do: true
-  def is_eq_or_gt_atom(:gt), do: true
-  def is_eq_or_gt_atom(:lt), do: false
 end

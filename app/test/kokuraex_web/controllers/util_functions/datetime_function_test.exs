@@ -72,10 +72,4 @@ defmodule KokuraexWeb.DatetimeFunctionTest do
     actual = compare_date_with_current_jst_date("3000-01-01T00:00:00+09:00")
     assert actual == :gt
   end
-
-  test "test_`:eq`か`:gt`ならtrue、`:lt`ならfalseを返す" do
-    assert is_eq_or_gt_atom(:eq) === true
-    assert is_eq_or_gt_atom(:gt) === true
-    assert is_eq_or_gt_atom(:lt) === false
-  end
 end
