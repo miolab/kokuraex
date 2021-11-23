@@ -12,8 +12,8 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
   </head>
-  <body class="bg-gradient-to-t from-indigo-300 to-white">
-    <div class="mx-5 mt-3 flex flex-col min-h-screen">
+  <body class="bg-gradient-to-t from-indigo-300 to-white flex flex-col min-h-screen">
+    <div class="mx-5 mt-3">
       <header>
         <section class="flex">
           <div class="w-4/12">
@@ -68,10 +68,59 @@
       <main class="flex-grow mt-8 text-gray-800">
         <%= @inner_content %>
       </main>
-
-      <footer class="text-center mt-16 mb-3">
-        <p>© 2021 kokura.ex</p>
-      </footer>
     </div>
+
+    <footer class="bg-white text-gray-600 body-font mt-24">
+      <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+        <a
+          href={Routes.page_path(@conn, :index)}
+          class="flex title-font font-medium items-center md:justify-start justify-center text-gray-700"
+        >
+          <img
+            src={Routes.static_path(@conn, "/images/img_kokuraex_icon.png")}
+            alt="kokura.ex Logo"
+            class="w-10 h-10"
+          />
+          <span class="ml-3 text-xl">kokura.ex</span>
+        </a>
+        <p class="text-sm text-gray-600 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">
+          © 2021 kokura.ex —
+          <a
+            href="https://twitter.com/im_miolab"
+            class="text-gray-500 ml-1"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            @im_miolab
+          </a>
+        </p>
+        <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+          <a
+            href="https://twitter.com/search?q=%23kokuraex"
+            class="ml-3 hover:opacity-75"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src={Routes.static_path(@conn, "/images/img_twitter.jpg")}
+              alt="twitter #kokuraex"
+              class="w-8 h-8""
+            >
+          </a>
+          <a
+            href="https://elixirjp.slack.com/archives/CPMB7CFPZ"
+            class="ml-3 hover:opacity-75"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src={Routes.static_path(@conn, "/images/img_slack.png")}
+              alt="slack #kokura-ex"
+              class="w-8 h-8"
+            >
+          </a>
+        </span>
+      </div>
+    </footer>
   </body>
 </html>
