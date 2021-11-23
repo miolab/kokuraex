@@ -12,63 +12,50 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
   </head>
-  <body class="bg-gradient-to-t from-indigo-300 to-white flex flex-col min-h-screen">
-    <div class="mx-5 mt-3">
-      <header>
-        <section class="flex">
-          <div class="w-4/12">
-            <a href={Routes.page_path(@conn, :index)}>
-              <img
-                src={Routes.static_path(@conn, "/images/img_header.png")}
-                alt="kokura.ex Logo"
-                class="w-4/6"
-              />
-            </a>
-          </div>
-          <div class="w-6/12">
-          </div>
-          <div class="w-2/12 max-w-xs flex">
-            <a
-              href="https://twitter.com/search?q=%23kokuraex"
-              class="w-1/2 hover:opacity-75"
-            >
-              <img
-                src={Routes.static_path(@conn, "/images/img_twitter.jpg")}
-                alt="twitter #kokuraex"
-                class="rounded-3xl w-5/6"
-              >
-            </a>
-            <a
-              href="https://elixirjp.slack.com/archives/CPMB7CFPZ"
-              class="w-1/2 hover:opacity-75"
-            >
-              <img
-                src={Routes.static_path(@conn, "/images/img_slack.png")}
-                alt="slack #kokura-ex"
-                class="rounded-3xl w-5/6"
-              >
-            </a>
-          </div>
-        </section>
-        <section>
-          <ul class="flex mt-2 text-xl font-bold text-yellow-500 w-2/3 mx-auto sticky">
-            <li class="flex-grow text-center hover:opacity-75">
-              <%= link "Home", to: Routes.page_path(@conn, :index) %>
-            </li>
-            <li class="flex-grow text-center hover:opacity-75">
-              <%= link "About", to: Routes.about_path(@conn, :index) %>
-            </li>
-            <li class="flex-grow text-center hover:opacity-75">
-              <%= link "Event", to: Routes.event_path(@conn, :index) %>
-            </li>
-          </ul>
-        </section>
-      </header>
 
-      <main class="flex-grow mt-8 text-gray-800">
-        <%= @inner_content %>
-      </main>
-    </div>
+  <body class="bg-gradient-to-t from-indigo-300 to-white flex flex-col min-h-screen">
+    <header class="bg-white text-gray-600 body-font">
+      <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+        <a
+          href={Routes.page_path(@conn, :index)}
+          class="flex title-font font-medium items-center text-gray-700 mb-4 md:mb-0"
+        >
+          <img
+            src={Routes.static_path(@conn, "/images/img_kokuraex_icon.png")}
+            alt="kokura.ex Logo"
+            class="w-12 h-12"
+          />
+          <span class="ml-3 text-2xl">kokura.ex</span>
+        </a>
+        <nav class="md:ml-auto flex flex-wrap items-center text-xl justify-center">
+          <a
+            href={Routes.page_path(@conn, :index)}
+            class="mr-5 px-3 py-1 font-bold text-yellow-500 transition-colors duration-200 transform rounded
+              hover:bg-yellow-400 hover:text-white"
+          >
+            Home
+          </a>
+          <a
+            href={Routes.about_path(@conn, :index)}
+            class="mr-5 px-3 py-1 font-bold text-yellow-500 transition-colors duration-200 transform rounded
+              hover:bg-yellow-400 hover:text-white"
+          >
+            About
+          </a>
+          <a
+            href={Routes.event_path(@conn, :index)}
+            class="mr-5 px-3 py-1 font-bold text-yellow-500 transition-colors duration-200 transform rounded
+              hover:bg-yellow-400 hover:text-white"
+          >
+            Event
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="flex-grow mt-8 mx-5 text-gray-800">
+      <%= @inner_content %>
+    </main>
 
     <footer class="bg-white text-gray-600 body-font mt-24">
       <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
@@ -104,7 +91,7 @@
             <img
               src={Routes.static_path(@conn, "/images/img_twitter.jpg")}
               alt="twitter #kokuraex"
-              class="w-8 h-8""
+              class="w-12 h-12""
             >
           </a>
           <a
@@ -116,7 +103,7 @@
             <img
               src={Routes.static_path(@conn, "/images/img_slack.png")}
               alt="slack #kokura-ex"
-              class="w-8 h-8"
+              class="w-12 h-12"
             >
           </a>
         </span>
