@@ -4,6 +4,12 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta property="og:site_name" content="kokura.ex (Elixir community in JP)">
+    <meta property="og:description" content="kokura.ex is a technical community that promotes the Elixir language with fun and exciting!">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="kokura.ex (Elixir community in JP)">
+    <meta property="og:image" content={Routes.static_path(@conn, "/images/img_kokuraex.png")}>
+    <meta property="og:url" content="https://kokura-ex.herokuapp.com">
     <%= csrf_meta_tag() %>
     <%= live_title_tag assigns[:page_title] || "kokura.ex", suffix: " (Elixir community in JP)" %>
     <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
