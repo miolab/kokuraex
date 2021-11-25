@@ -4,6 +4,12 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta property="og:site_name" content="kokura.ex (Elixir community in JP)">
+    <meta property="og:description" content="kokura.ex is a technical community that promotes the Elixir language with fun and exciting!">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="kokura.ex (Elixir community in JP)">
+    <meta property="og:image" content={Routes.static_path(@conn, "/images/img_kokuraex.png")}>
+    <meta property="og:url" content="https://kokura-ex.herokuapp.com">
     <%= csrf_meta_tag() %>
     <%= live_title_tag assigns[:page_title] || "kokura.ex", suffix: " (Elixir community in JP)" %>
     <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
@@ -18,14 +24,13 @@
       <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
         <a
           href={Routes.page_path(@conn, :index)}
-          class="flex title-font font-medium items-center text-gray-700 mb-4 md:mb-0"
+          class="flex title-font items-center mb-4 md:mb-0"
         >
           <img
-            src={Routes.static_path(@conn, "/images/img_kokuraex_icon.png")}
-            alt="kokura.ex Logo"
-            class="w-12 h-12"
+            src={Routes.static_path(@conn, "/images/img_header.png")}
+            alt="kokura.ex"
+            class="w-auto h-12"
           />
-          <span class="ml-3 text-2xl">kokura.ex</span>
         </a>
         <nav class="md:ml-auto flex flex-wrap items-center text-xl justify-center">
           <a
