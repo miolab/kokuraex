@@ -64,7 +64,8 @@ defmodule KokuraexWeb.EventFunction do
 
           true ->
             res_decoded_events
-            |> Enum.map(
+            |> Flow.from_enumerable()
+            |> Flow.map(
               &%{
                 default_events_map()
                 | title: &1["title"],
