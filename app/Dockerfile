@@ -1,4 +1,4 @@
-FROM elixir:1.12.2-slim
+FROM elixir:1.16.2-slim
 
 ENV MIX_HOME=/root/.mix \
   MIX_ENV=prod \
@@ -20,16 +20,11 @@ RUN apt-get update -y && \
   sudo \
   tar
 
-RUN apt-get install -y nodejs npm
-RUN npm install -g n
-RUN n 16.9.1
-RUN apt-get purge -y nodejs npm
-
 RUN apt-get clean
 
 RUN mix local.hex --force && \
   mix local.rebar --force
 
-RUN mix archive.install hex phx_new 1.6.0 --force
+RUN mix archive.install hex phx_new 1.7.11 --force
 
 CMD [ "mix", "phx.server", "--no-halt" ]
