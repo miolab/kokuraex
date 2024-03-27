@@ -53,5 +53,58 @@
     <main class="flex-grow mt-8 mx-5 text-gray-800">
       <%= @inner_content %>
     </main>
+
+    <footer class="bg-white text-gray-600 body-font mt-24">
+      <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+        <.link
+          href={~p"/"}
+          class="flex title-font font-medium items-center md:justify-start justify-center text-gray-700"
+        >
+          <img
+            src={~p"/images/img_kokuraex_icon.png"}
+            alt="kokura.ex Logo"
+            class="w-10 h-10"
+          />
+          <span class="ml-3 text-xl">kokura.ex</span>
+        </.link>
+        <p class="text-sm text-gray-600 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">
+          © 2024 kokura.ex —
+          <.link
+            href="https://twitter.com/im_miolab"
+            class="text-gray-500 ml-1"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            @imaima
+          </.link>
+        </p>
+        <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+          <.link
+            href="https://twitter.com/search?q=%23kokuraex"
+            class="ml-3 hover:opacity-75"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src={~p"/images/img_x_logo-black.png"}
+              alt="x #kokuraex"
+              class="w-7 h-7 mt-3"
+            >
+          </.link>
+          <.link
+            href="https://elixirjp.slack.com/archives/CPMB7CFPZ"
+            class="ml-3 hover:opacity-75"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src={~p"/images/img_slack.png"}
+              alt="slack #kokura-ex"
+              class="w-12 h-12"
+            >
+          </.link>
+        </span>
+      </div>
+    </footer>
   </body>
 </html>
