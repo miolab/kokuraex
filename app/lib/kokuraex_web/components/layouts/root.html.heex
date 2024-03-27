@@ -14,6 +14,16 @@
   <body class="bg-white antialiased">
     <header class="bg-white text-gray-600 body-font">
       <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+        <.link
+          href={~p"/"}
+          class="flex title-font items-center mb-4 md:mb-0"
+        >
+          <img
+            src={~p"/images/img_header.png"}
+            alt="kokura.ex"
+            class="w-auto h-12"
+          />
+        </.link>
         <nav class="md:ml-auto flex flex-wrap items-center text-xl justify-center">
           <.link
             href={~p"/"}
@@ -39,6 +49,7 @@
         </nav>
       </div>
     </header>
+
     <main class="flex-grow mt-8 mx-5 text-gray-800">
       <%= @inner_content %>
     </main>
