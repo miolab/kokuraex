@@ -21,14 +21,18 @@
             </span>
           </div>
           <div class="mb-2 text-xl font-bold text-purple-900">
-            <.link
-              href={event.event_url},
-              target="_blank",
-              rel="noopener noreferrer",
-              class="hover:text-purple-600"
-            >
-              <%= event.title %>
-            </.link>
+            <%= if event.title != "Unknown Error" do %>
+              <.link
+                href={event.event_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hover:text-purple-600"
+              >
+                <%= event.title %>
+              </.link>
+            <% else %>
+              -
+            <% end %>
           </div>
           <div class="text-sm">
             <%= event.catch %>
@@ -56,18 +60,18 @@
             </span>
           </div>
           <div class="mb-2 text-xl font-bold text-purple-900">
-            <.link
-              href={event.event_url},
-              target="_blank",
-              rel="noopener noreferrer",
-              class="hover:text-purple-600"
-            >
             <%= if event.title != "Unknown Error" do %>
-              <%= event.title %>
+              <.link
+                href={event.event_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hover:text-purple-600"
+              >
+                <%= event.title %>
+              </.link>
             <% else %>
               -
             <% end %>
-            </.link>
           </div>
           <div class="text-sm">
             <%= event.catch %>
