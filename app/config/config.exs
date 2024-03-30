@@ -12,7 +12,7 @@ config :kokuraex,
 
 # Configures the endpoint
 config :kokuraex, KokuraexWeb.Endpoint,
-  url: [host: "localhost"],
+  url: [host: System.get_env("RENDER_EXTERNAL_HOSTNAME") || "localhost"],
   adapter: Bandit.PhoenixAdapter,
   render_errors: [
     formats: [html: KokuraexWeb.ErrorHTML, json: KokuraexWeb.ErrorJSON],
