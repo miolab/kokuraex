@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" class="[scrollbar-gutter:stable]">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:site_name" content="kokura.ex (Elixir community in JP)" />
+    <meta
+      property="og:description"
+      content="kokura.ex is a technical community that promotes the Elixir language with fun and exciting!"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="kokura.ex (Elixir community in JP)" />
+    <meta property="og:image" content={~p"/images/img_kokuraex.png"} />
+    <meta name="csrf-token" content={get_csrf_token()} />
+    <.live_title suffix=" · Phoenix Framework">
+      <%= assigns[:page_title] || "kokura.ex (Elixir community in JP)" %>
+    </.live_title>
+    <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
+    </script>
+  </head>
+
+  <body class="bg-gradient-to-t from-indigo-300 to-white flex flex-col min-h-screen antialiased">
+    <header class="bg-white text-gray-600 body-font">
+      <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+        <.link href={~p"/"} class="flex title-font items-center mb-4 md:mb-0">
+          <img src={~p"/images/img_header.png"} alt="kokura.ex" class="w-auto h-12" />
+        </.link>
+        <nav class="md:ml-auto flex flex-wrap items-center text-xl justify-center">
+          <.link
+            href={~p"/"}
+            class="mr-5 px-3 py-1 font-bold text-yellow-500 transition-colors duration-200 transform rounded
+              hover:bg-yellow-400 hover:text-white"
+          >
+            Home
+          </.link>
+          <.link
+            href={~p"/about"}
+            class="mr-5 px-3 py-1 font-bold text-yellow-500 transition-colors duration-200 transform rounded
+              hover:bg-yellow-400 hover:text-white"
+          >
+            About
+          </.link>
+          <.link
+            href={~p"/event"}
+            class="mr-5 px-3 py-1 font-bold text-yellow-500 transition-colors duration-200 transform rounded
+              hover:bg-yellow-400 hover:text-white"
+          >
+            Event
+          </.link>
+        </nav>
+      </div>
+    </header>
+
+    <main class="flex-grow mt-8 mx-5 text-gray-800">
+      <%= @inner_content %>
+    </main>
+
+    <footer class="bg-white text-gray-600 body-font mt-24">
+      <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+        <.link
+          href={~p"/"}
+          class="flex title-font font-medium items-center md:justify-start justify-center text-gray-700"
+        >
+          <img src={~p"/images/img_kokuraex_icon.png"} alt="kokura.ex Logo" class="w-10 h-10" />
+          <span class="ml-3 text-xl">kokura.ex</span>
+        </.link>
+        <p class="text-sm text-gray-600 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">
+          © 2024 kokura.ex —
+          <.link
+            href="https://twitter.com/im_miolab"
+            class="text-gray-500 ml-1"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            @imaima
+          </.link>
+        </p>
+        <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+          <.link
+            href="https://twitter.com/search?q=%23kokuraex"
+            class="ml-3 hover:opacity-75"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src={~p"/images/img_x_logo-black.png"} alt="x #kokuraex" class="w-7 h-7 mt-3" />
+          </.link>
+          <.link
+            href="https://elixirjp.slack.com/archives/CPMB7CFPZ"
+            class="ml-3 hover:opacity-75"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src={~p"/images/img_slack.png"} alt="slack #kokura-ex" class="w-12 h-12" />
+          </.link>
+        </span>
+      </div>
+    </footer>
+  </body>
+</html>

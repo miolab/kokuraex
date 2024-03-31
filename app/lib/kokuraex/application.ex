@@ -8,14 +8,15 @@ defmodule Kokuraex.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      # Start the Telemetry supervisor
       KokuraexWeb.Telemetry,
-      # Start the PubSub system
+      {DNSCluster, query: Application.get_env(:kokuraex, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Kokuraex.PubSub},
-      # Start the Endpoint (http/https)
-      KokuraexWeb.Endpoint
+      # Start the Finch HTTP client for sending emails
+      {Finch, name: Kokuraex.Finch},
       # Start a worker by calling: Kokuraex.Worker.start_link(arg)
-      # {Kokuraex.Worker, arg}
+      # {Kokuraex.Worker, arg},
+      # Start to serve requests, typically the last entry
+      KokuraexWeb.Endpoint
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

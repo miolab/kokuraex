@@ -9,10 +9,9 @@ erl_crash.dump
 /config/*.secret.exs
 .elixir_ls/
 
-.env
-
 # OS
 .DS_Store
 
 # other
+/app/.env
 .vscode/
