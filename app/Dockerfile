@@ -1,7 +1,9 @@
-FROM elixir:1.16.2-slim
+FROM elixir:1.16.2-slim AS build
 
+ARG MIX_ENV=prod
 ENV MIX_HOME=/root/.mix \
   MIX_ENV=prod \
+  PHX_SERVER=true \
   SECRET_KEY_BASE=${SECRET_KEY_BASE} \
   PORT=${PORT}
 
@@ -32,4 +34,14 @@ RUN MIX_ENV=prod mix deps.compile
 RUN MIX_ENV=prod mix assets.deploy
 RUN MIX_ENV=prod mix release --overwrite
 
-CMD [ "_build/prod/rel/kokuraex/bin/kokuraex", "start" ]
+FROM elixir:1.16.2-slim AS app
+
+ARG MIX_ENV=prod
+ENV HOME=/app \
+  PHX_SERVER=true
+
+WORKDIR /app
+
+COPY --from=build /usr/src/app/_build/prod/rel/kokuraex ./
+
+CMD [ "bin/kokuraex", "start" ]
