@@ -41,7 +41,10 @@ ENV HOME=/app \
   PHX_SERVER=true
 
 WORKDIR /app
+RUN chown nobody:nogroup /app
 
-COPY --from=build /usr/src/app/_build/prod/rel/kokuraex ./
+USER nobody:nogroup
+
+COPY --from=build --chown=nobody:nogroup /usr/src/app/_build/prod/rel/kokuraex ./
 
 CMD [ "bin/kokuraex", "start" ]
