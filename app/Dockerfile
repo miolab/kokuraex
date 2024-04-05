@@ -1,6 +1,5 @@
 FROM elixir:1.16.2-slim AS build
 
-ARG MIX_ENV=prod
 ENV MIX_HOME=/root/.mix \
   MIX_ENV=prod \
   PHX_SERVER=true \
@@ -36,7 +35,6 @@ RUN MIX_ENV=prod mix release --overwrite
 
 FROM elixir:1.16.2-slim AS app
 
-ARG MIX_ENV=prod
 ENV HOME=/app \
   PHX_SERVER=true
 
