@@ -12,13 +12,14 @@ subgraph Docker
     Elixir
     Phoenix
 end
-subgraph R[Build and Deploy by Render]
+subgraph R[Build and Deploy using Docker image]
     Render
 end
     Docker-->|git push to GitHub|GH[GitHub];
     GH-->|Detection of changes|CI[CircleCI];
-    CI-->|After CI passed,<br>allow merge to main branch|GH;
-    GH-->R;
+    CI-->|After CI passed,<br>allow merge to <strong>main</strong> branch|GH;
+    CI-->|When <strong>main</strong> branch merged, run Render deploy hook|R;
+    R-.->|Using <strong>main</strong> branch's latest files for deploy|GH;
 ```
 
 ## Versions
@@ -26,7 +27,7 @@ end
 - Elixir 1.16.2 (Erlang/OTP 26)
 - Phoenix 1.7.11
 
-## CI tool
+## CI/CD tool
 
 - CircleCI
 
@@ -53,7 +54,31 @@ end
   - `PORT`
   - `PHX_SERVER`
 
-## Other Information
+### Run application in local development
+
+- Normal development (can debug by live reloading)
+
+  ```sh
+  docker compose build
+  ...
+
+  docker compose up
+  ```
+
+- Development verifying in a production environment
+
+  ```sh
+  docker build -f Dockerfile -t kokuraex_prod .
+
+  docker run --rm -p 4000:4000 \
+  -e SECRET_KEY_BASE=$(cat .env | grep SECRET_KEY_BASE | cut -d '=' -f2) \
+  --name kokuraex_prod \
+  kokuraex_prod
+  ```
+
+---
+
+# Other Information
 
 The **previous system architecture** and **archived repositories** are as follows.
 
