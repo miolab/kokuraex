@@ -4,4 +4,16 @@ erl_crash.dump
 *.beam
 .elixir_ls/
 
-.env
+# Git files
+.git/
+.gitignore
+
+# Test and CI
+.circleci/
+app/test/
+
+# other
+/app/.env
+/app/.env.sample
+.vscode/
+.DS_Store

@@ -9,16 +9,24 @@ workflows:
   version: 2
   build-deploy:
     jobs:
+      - test
       - build
+      - deploy:
+          requires:
+            - test
+            - build
+          filters:
+            branches:
+              only: main
 
 jobs:
-  build:
+  test:
     executor:
       name: machine-executor
     steps:
       - checkout
       - run:
-          name: Build Docker image
+          name: Build a development Docker image
           command: |
             set -x
             docker compose build
@@ -39,25 +47,51 @@ jobs:
             set -x
             docker compose run app bash -c "MIX_ENV=test mix test"
       - run:
-          name: Compile assets
+          name: Finish test
           command: |
             set -x
-            docker compose run app bash -c "MIX_ENV=prod mix assets.deploy"
+            echo "Finish test"
+
+  build:
+    executor:
+      name: machine-executor
+    steps:
+      - checkout
       - run:
-          name: Mix release
+          name: Build a production Docker image
           command: |
             set -x
-            docker compose run app bash -c "MIX_ENV=prod mix release"
+            docker build -t kokuraex -f app/Dockerfile app/
       - run:
-          name: Run Docker image
+          name: Run Docker image for activation check
           command: |
             set -x
-            docker compose up -d
-            sleep 1
+            docker run -d -p 4000:4000  \
+            -e SECRET_KEY_BASE="dummy_key" \
+            --name kokuraex kokuraex
+            sleep 5
             docker ps -f status=running
-            docker compose logs
+            docker logs kokuraex
       - run:
           name: Finish build
           command: |
             set -x
+            docker stop kokuraex
             echo "Finish build"
+
+  deploy:
+    deploy:
+    executor:
+      name: machine-executor
+    steps:
+      - checkout
+      - run:
+          name: Run Render deploy hook
+          working_directory: app
+          command: |
+            curl -X POST $RENDER_DEPLOY_HOOK_URL
+      - run:
+          name: Finish deploy
+          command: |
+            set -x
+            echo "Finish deploy"
