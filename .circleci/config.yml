@@ -11,6 +11,10 @@ workflows:
     jobs:
       - test
       - build
+      - deploy:
+          requires:
+            - test
+            - build
 
 jobs:
   test:
@@ -71,3 +75,20 @@ jobs:
             set -x
             docker stop kokuraex
             echo "Finish build"
+
+  deploy:
+    deploy:
+    executor:
+      name: machine-executor
+    steps:
+      - checkout
+      - run:
+          name: Run Render deploy hook
+          working_directory: app
+          command: |
+            curl -X POST $RENDER_DEPLOY_HOOK_URL
+      - run:
+          name: Finish deploy
+          command: |
+            set -x
+            echo "Finish deploy"
