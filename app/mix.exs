@@ -57,6 +57,7 @@ defmodule Kokuraex.MixProject do
       {:bandit, "~> 1.2"},
       {:httpoison, "~> 2.2"},
       {:timex, "~> 3.7"},
+      {:cachex, "~> 3.6"},
       {:mix_test_watch, "~> 1.2", only: [:dev, :test], runtime: false}
     ]
   end
