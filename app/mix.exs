@@ -58,6 +58,7 @@ defmodule Kokuraex.MixProject do
       {:httpoison, "~> 2.2"},
       {:timex, "~> 3.7"},
       {:cachex, "~> 3.6"},
+      {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
       {:mix_test_watch, "~> 1.2", only: [:dev, :test], runtime: false}
     ]
   end
