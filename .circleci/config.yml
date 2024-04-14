@@ -47,6 +47,11 @@ jobs:
             set -x
             docker compose run app bash -c "MIX_ENV=test mix test"
       - run:
+          name: Mix dialyzer
+          command: |
+            set -x
+            docker compose run app bash -c "mix dialyzer"
+      - run:
           name: Finish test
           command: |
             set -x
