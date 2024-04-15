@@ -32,7 +32,7 @@ defmodule Kokuraex.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.7.11"},
+      {:phoenix, "1.7.11"},
       {:phoenix_html, "~> 4.0"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_live_view, "~> 0.20.2"},
@@ -57,6 +57,8 @@ defmodule Kokuraex.MixProject do
       {:bandit, "~> 1.2"},
       {:httpoison, "~> 2.2"},
       {:timex, "~> 3.7"},
+      {:cachex, "~> 3.6"},
+      {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
       {:mix_test_watch, "~> 1.2", only: [:dev, :test], runtime: false}
     ]
   end

@@ -27,6 +27,7 @@ defmodule Kokuraex.Services.DatetimeFunction do
   @doc """
   現在のJST時刻を取得してISO8601形式で返す
   """
+  @spec current_jst_datetime() :: String.t()
   def current_jst_datetime() do
     Timex.now("Japan")
     |> DateTime.to_iso8601()
