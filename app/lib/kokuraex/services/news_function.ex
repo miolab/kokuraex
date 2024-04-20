@@ -13,7 +13,7 @@ defmodule Kokuraex.Services.NewsFunction do
 
     case res do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
-        Cache.put_cache("#{owner}_#{repo}", body, 1)
+        Cache.put_cache("#{owner}_#{repo}", body, 20)
         body
 
       _ ->
@@ -47,11 +47,21 @@ defmodule Kokuraex.Services.NewsFunction do
           tag_name: information_json |> Map.get("tag_name"),
           created_at: information_json |> Map.get("created_at"),
           url: information_json |> Map.get("html_url"),
-          body: information_json |> Map.get("body")
+          body:
+            information_json
+            |> Map.get("body")
+            |> Earmark.as_html!()
+            |> Phoenix.HTML.raw()
         }
 
       true ->
-        nil
+        %{
+          tag_name: "",
+          created_at: "",
+          url: "",
+          body:
+            "Our service is temporarily unavailable as we are currently refreshing our data connections. We appreciate your patience and understanding."
+        }
     end
   end
 end
