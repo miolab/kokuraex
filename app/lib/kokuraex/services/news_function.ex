@@ -3,6 +3,7 @@ defmodule Kokuraex.Services.NewsFunction do
   Provides functions for handling news about Elixir topics.
   """
 
+  alias Kokuraex.Services.DatetimeFunction
   alias Kokuraex.Utils.Cache
 
   defp _github_api_header() do
@@ -53,7 +54,10 @@ defmodule Kokuraex.Services.NewsFunction do
 
         %{
           tag_name: information_json |> Map.get("tag_name"),
-          created_at: information_json |> Map.get("created_at"),
+          created_at:
+            information_json
+            |> Map.get("created_at")
+            |> DatetimeFunction.date_format_iso_to_ymd(),
           url: information_json |> Map.get("html_url"),
           body:
             information_json
