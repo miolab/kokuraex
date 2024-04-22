@@ -3,17 +3,26 @@ defmodule Kokuraex.Services.NewsFunction do
   Provides functions for handling news about Elixir topics.
   """
 
+  alias Kokuraex.Services.DatetimeFunction
   alias Kokuraex.Utils.Cache
+
+  defp _github_api_header() do
+    [
+      {"Authorization", "Bearer #{System.get_env("GITHUB_API_TOKEN")}"},
+      {"Accept", "application/vnd.github+json"},
+      {"X-GitHub-Api-Version", "2022-11-28"}
+    ]
+  end
 
   # GET the GitHub repository latest release information.
   defp _get_and_cache_github_latest_release_information(owner, repo) do
-    res =
-      "https://api.github.com/repos/#{owner}/#{repo}/releases/latest"
-      |> HTTPoison.get()
-
-    case res do
+    HTTPoison.get(
+      "https://api.github.com/repos/#{owner}/#{repo}/releases/latest",
+      _github_api_header()
+    )
+    |> case do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
-        Cache.put_cache("#{owner}_#{repo}", body, 20)
+        Cache.put_cache("#{owner}_#{repo}", body, 15)
         body
 
       _ ->
@@ -45,7 +54,10 @@ defmodule Kokuraex.Services.NewsFunction do
 
         %{
           tag_name: information_json |> Map.get("tag_name"),
-          created_at: information_json |> Map.get("created_at"),
+          created_at:
+            information_json
+            |> Map.get("created_at")
+            |> DatetimeFunction.date_format_iso_to_ymd(),
           url: information_json |> Map.get("html_url"),
           body:
             information_json

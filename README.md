@@ -39,7 +39,8 @@ end
 
 ## For Dev
 
-- Prepare `SECRET_KEY_BASE` and set it to .env file.
+- Prepare `SECRET_KEY_BASE` and `GITHUB_API_TOKEN` ([ref](https://github.com/settings/tokens)).
+- Set them to .env file.
 
   ```sh
   docker compose run app mix phx.gen.secret
@@ -53,6 +54,7 @@ end
   - `SECRET_KEY_BASE`
   - `PORT`
   - `PHX_SERVER`
+  - `GITHUB_API_TOKEN`
 
 ### Run application in local development
 
@@ -60,20 +62,20 @@ end
 
   ```sh
   docker compose build
-  ...
+  ```
 
+  ```sh
   docker compose up
   ```
 
 - Development verifying in a production environment
 
   ```sh
-  docker build -f Dockerfile -t kokuraex_prod .
+  docker build -f app/Dockerfile -t kokuraex_prod app
+  ```
 
-  docker run --rm -p 4000:4000 \
-  -e SECRET_KEY_BASE=$(cat .env | grep SECRET_KEY_BASE | cut -d '=' -f2) \
-  --name kokuraex_prod \
-  kokuraex_prod
+  ```sh
+  ./script/docker_prod_verify.sh
   ```
 
 ---

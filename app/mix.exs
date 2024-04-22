@@ -60,6 +60,7 @@ defmodule Kokuraex.MixProject do
       {:cachex, "~> 3.6"},
       {:earmark, "~> 1.4.46"},
       {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
+      {:mimic, "~> 1.7", only: :test},
       {:mix_test_watch, "~> 1.2", only: [:dev, :test], runtime: false}
     ]
   end
