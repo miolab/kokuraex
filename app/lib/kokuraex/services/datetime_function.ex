@@ -1,6 +1,9 @@
 defmodule Kokuraex.Services.DatetimeFunction do
   @moduledoc """
   Conveniences for handling of Date and Time.
+
+  - __TODO:__ `/event`コンテンツを削除するタイミングでこのmoduleごと消す
+  - 今後、日付に関する処理は`Utils.DatetimeProcessor`に実装すること
   """
 
   @doc """
