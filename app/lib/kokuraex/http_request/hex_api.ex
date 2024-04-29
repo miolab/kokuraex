@@ -73,6 +73,15 @@ defmodule Kokuraex.HttpRequest.HexApi do
     end
   end
 
+  @doc """
+  GET the Hex latest release information and return as Map.
+  """
+  @spec latest_release_information(String.t()) :: %{
+          latest_version: String.t(),
+          created_at: String.t(),
+          url: String.t(),
+          body: String.t()
+        }
   def latest_release_information(package_name) do
     latest_information = _get_and_cache_latest_release_information(package_name)
 
