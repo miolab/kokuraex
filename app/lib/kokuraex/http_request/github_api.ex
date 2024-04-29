@@ -34,7 +34,7 @@ defmodule Kokuraex.HttpRequest.GithubApi do
   GET the repository latest release information and return as Map.
   """
   @spec latest_release_information(String.t(), String.t()) :: %{
-          tag_name: String.t(),
+          latest_version: String.t(),
           created_at: String.t(),
           url: String.t(),
           body: String.t()
@@ -53,7 +53,7 @@ defmodule Kokuraex.HttpRequest.GithubApi do
         information_json = github_release_information |> Jason.decode!()
 
         %{
-          tag_name: information_json |> Map.get("tag_name"),
+          latest_version: information_json |> Map.get("tag_name"),
           created_at:
             information_json
             |> Map.get("created_at")
@@ -68,7 +68,7 @@ defmodule Kokuraex.HttpRequest.GithubApi do
 
       true ->
         %{
-          tag_name: "",
+          latest_version: "",
           created_at: "",
           url: "",
           body:
