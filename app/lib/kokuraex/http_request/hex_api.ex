@@ -65,7 +65,10 @@ defmodule Kokuraex.HttpRequest.HexApi do
             |> Map.get("inserted_at")
             |> DatetimeProcessor.date_format_iso_to_ymd(),
           url: docs_html_url,
-          body: "[latest version url] #{docs_html_url}"
+          body:
+            "[latest version url] #{docs_html_url}"
+            |> Earmark.as_html!()
+            |> Phoenix.HTML.raw()
         }
 
       true ->
