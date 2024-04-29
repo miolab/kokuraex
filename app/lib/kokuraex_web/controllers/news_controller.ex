@@ -14,8 +14,9 @@ defmodule KokuraexWeb.NewsController do
 
   defp _github_latest_release_information_list() do
     [
-      elixir: NewsFunction.get_github_latest_release_information("elixir-lang", "elixir"),
-      bumblebee: NewsFunction.get_github_latest_release_information("elixir-nx", "bumblebee")
+      elixir: NewsFunction.github_latest_release_information("elixir-lang", "elixir"),
+      phoenix: NewsFunction.hex_latest_release_information("phoenix"),
+      bumblebee: NewsFunction.github_latest_release_information("elixir-nx", "bumblebee")
     ]
   end
 end
