@@ -21,36 +21,35 @@ workflows:
 
 jobs:
   test:
-    executor:
-      name: machine-executor
+    docker:
+      - image: cimg/elixir:1.16
     steps:
       - checkout
-      - run:
-          name: Build a development Docker image
-          command: |
-            set -x
-            docker compose build
       - run:
           name: Mix deps.get & compile
           command: |
             set -x
-            docker compose run app bash -c "mix deps.get"
-            docker compose run app bash -c "mix compile"
+            pwd
+            ls
+            cd app
+            mix --version
+            mix deps.get
+            mix compile
       - run:
           name: Mix format
           command: |
             set -x
-            docker compose run app bash -c "mix format --check-formatted"
+            mix format --check-formatted
       - run:
           name: Mix test
           command: |
             set -x
-            docker compose run app bash -c "MIX_ENV=test mix test"
+            MIX_ENV=test mix test
       - run:
           name: Mix dialyzer
           command: |
             set -x
-            docker compose run app bash -c "mix dialyzer"
+            mix dialyzer
       - run:
           name: Finish test
           command: |
