@@ -61,6 +61,7 @@ defmodule Kokuraex.MixProject do
       {:earmark, "~> 1.4.46"},
       {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
       {:mimic, "~> 1.7", only: :test},
+      {:git_hooks, "~> 0.7.3", only: [:dev], runtime: false},
       {:mix_test_watch, "~> 1.2", only: [:dev, :test], runtime: false}
     ]
   end
