@@ -12,8 +12,12 @@ erl_crash.dump
 .circleci/
 app/test/
 
-# other
-/app/.env
-/app/.env.sample
-.vscode/
+# OS
 .DS_Store
+.vscode/
+
+# other
+app/.env
+app/.env.sample
+app/README.md
+script/

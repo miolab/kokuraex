@@ -6,7 +6,6 @@ ENV MIX_HOME=/root/.mix \
   SECRET_KEY_BASE=${SECRET_KEY_BASE} \
   PORT=${PORT}
 
-COPY . /usr/src/app
 WORKDIR /usr/src/app
 
 RUN apt-get update -y && \
@@ -23,10 +22,15 @@ RUN apt-get update -y && \
 
 RUN apt-get clean
 
+COPY mix.exs mix.lock ./
+COPY config config
+
 RUN mix local.hex --force && \
   mix local.rebar --force
 
-RUN mix archive.install hex phx_new 1.7.11 --force
+COPY lib lib
+COPY priv priv
+COPY assets assets
 
 RUN mix deps.get --only prod
 RUN MIX_ENV=prod mix deps.compile
