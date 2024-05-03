@@ -25,7 +25,7 @@ end
 ## Versions
 
 - Elixir 1.16.2 (Erlang/OTP 26)
-- Phoenix 1.7.11
+- Phoenix 1.7.12
 
 ## CI/CD tool
 
@@ -69,10 +69,6 @@ end
   ```
 
 - Development verifying in a production environment
-
-  ```sh
-  docker build -f app/Dockerfile -t kokuraex_prod app
-  ```
 
   ```sh
   ./script/docker_prod_verify.sh
