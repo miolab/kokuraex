@@ -70,8 +70,8 @@ defmodule Kokuraex.Contexts.News do
           package_owner: String.t(),
           package_name: String.t(),
           package_release_information_platform: String.t()
-        }) :: {:ok, PackageNews.t()} | {:error, Ecto.Changeset.t()}
-  def create_item(attrs \\ %{}) do
+        }) :: term()
+  def create_item(attrs) do
     %PackageNews{}
     |> PackageNews.changeset(attrs)
     |> Repo.insert()
