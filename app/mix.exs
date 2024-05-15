@@ -33,6 +33,9 @@ defmodule Kokuraex.MixProject do
   defp deps do
     [
       {:phoenix, "1.7.12"},
+      {:phoenix_ecto, "~> 4.5"},
+      {:ecto_sql, "~> 3.11"},
+      {:postgrex, ">= 0.17.0"},
       {:phoenix_html, "~> 4.1"},
       {:phoenix_live_reload, "~> 1.5", only: :dev},
       {:phoenix_live_view, "~> 0.20.2"},
