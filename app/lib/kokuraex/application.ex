@@ -9,7 +9,6 @@ defmodule Kokuraex.Application do
   def start(_type, _args) do
     children = [
       KokuraexWeb.Telemetry,
-      Kokuraex.Repo,
       {DNSCluster, query: Application.get_env(:kokuraex, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Kokuraex.PubSub},
       # Start the Finch HTTP client for sending emails
