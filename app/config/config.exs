@@ -7,20 +7,7 @@
 # General application configuration
 import Config
 
-config :kokuraex, Kokuraex.Repo,
-  database: System.get_env("PGDATABASE"),
-  username: System.get_env("PGUSER"),
-  password: System.get_env("PGPASSWORD"),
-  hostname: System.get_env("PGHOST"),
-  pool_size: 10,
-  ssl: true,
-  ssl_opts: [
-    server_name_indication: String.to_charlist(System.get_env("PGHOST") || ""),
-    verify: :verify_none
-  ]
-
 config :kokuraex,
-  ecto_repos: [Kokuraex.Repo],
   generators: [timestamp_type: :utc_datetime]
 
 # Configures the endpoint
