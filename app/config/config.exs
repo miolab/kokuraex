@@ -7,6 +7,12 @@
 # General application configuration
 import Config
 
+config :kokuraex, Kokuraex.Repo,
+  database: "kokuraex_repo",
+  username: "user",
+  password: "pass",
+  hostname: "localhost"
+
 config :kokuraex,
   ecto_repos: [Kokuraex.Repo],
   generators: [timestamp_type: :utc_datetime]
