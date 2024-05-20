@@ -17,7 +17,10 @@ defmodule KokuraexWeb.Router do
   scope "/", KokuraexWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    get("/", PageController, :home)
+    get("/about", AboutController, :home)
+    get("/news", NewsController, :home)
+    get("/event", EventController, :home)
   end
 
   # Other scopes may use custom stacks.
