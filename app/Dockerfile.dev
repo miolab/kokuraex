@@ -1,0 +1,39 @@
+FROM elixir:1.16.2-slim
+
+ENV MIX_HOME=/root/.mix \
+  MIX_ENV=dev \
+  PHX_SERVER=true \
+  SECRET_KEY_BASE=dummy_key \
+  PORT=4000
+
+WORKDIR /usr/src/app
+
+RUN apt-get update -y && \
+  apt-get upgrade -y && \
+  apt-get install -y \
+  build-essential \
+  curl \
+  git \
+  gzip \
+  inotify-tools \
+  ssh \
+  sudo \
+  tar
+
+RUN apt-get clean
+
+COPY mix.exs mix.lock ./
+COPY config config
+
+RUN mix local.hex --force && \
+  mix local.rebar --force
+
+COPY lib lib
+COPY priv priv
+COPY assets assets
+
+RUN mix deps.get
+RUN MIX_ENV=dev mix deps.compile
+RUN MIX_ENV=dev mix assets.deploy
+
+CMD [ "mix", "phx.server", "--no-halt" ]
