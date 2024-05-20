@@ -3,6 +3,6 @@ defmodule KokuraexWeb.PageControllerTest do
 
   test "GET /", %{conn: conn} do
     conn = get(conn, ~p"/")
-    assert html_response(conn, 200) =~ "Peace of mind from prototype to production"
+    assert html_response(conn, 200) =~ "kokura.exは開発言語Elixirをわいわい盛り上げていく技術コミュニティです"
   end
 end
