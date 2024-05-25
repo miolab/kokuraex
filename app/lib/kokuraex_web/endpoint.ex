@@ -7,7 +7,7 @@ defmodule KokuraexWeb.Endpoint do
   @session_options [
     store: :cookie,
     key: "_kokuraex_key",
-    signing_salt: "7z/000Tv",
+    signing_salt: "gDkF/Zu6",
     same_site: "Lax"
   ]
 
@@ -31,6 +31,7 @@ defmodule KokuraexWeb.Endpoint do
     socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket
     plug Phoenix.LiveReloader
     plug Phoenix.CodeReloader
+    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :kokuraex
   end
 
   plug Phoenix.LiveDashboard.RequestLogger,
