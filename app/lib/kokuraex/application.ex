@@ -17,7 +17,9 @@ defmodule Kokuraex.Application do
       # Start a worker by calling: Kokuraex.Worker.start_link(arg)
       # {Kokuraex.Worker, arg},
       # Start to serve requests, typically the last entry
-      KokuraexWeb.Endpoint
+      KokuraexWeb.Endpoint,
+      # Use cache
+      {Cachex, name: :common_cache}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
