@@ -7,6 +7,7 @@
 # General application configuration
 import Config
 
+# Configure the database
 config :kokuraex, Kokuraex.Repo,
   database: System.get_env("PGDATABASE"),
   username: System.get_env("PGUSER"),
