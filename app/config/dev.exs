@@ -13,7 +13,7 @@ config :kokuraex, KokuraexWeb.Endpoint,
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "vTiw8Qsdp4AAJGDX+SjfosavKJoV2n5O1ZzwBZPtpaEs1f6a6zn1YTtzgUOKS9eD",
+  secret_key_base: "xaZhLISa9N1hGzsEeQ//PFTh6B2LytGnBjUZJdEmSIrQzGi6c7isbPU6hhE04CZY",
   watchers: [
     esbuild: {Esbuild, :install_and_run, [:kokuraex, ~w(--sourcemap=inline --watch)]},
     tailwind: {Tailwind, :install_and_run, [:kokuraex, ~w(--watch)]}
@@ -65,8 +65,12 @@ config :phoenix, :stacktrace_depth, 20
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
 
-# Include HEEx debug annotations as HTML comments in rendered markup
-config :phoenix_live_view, :debug_heex_annotations, true
+config :phoenix_live_view,
+  # Include HEEx debug annotations as HTML comments in rendered markup
+  debug_heex_annotations: true,
+  # Enable helpful, but potentially expensive runtime checks
+  # TODO: check
+  enable_expensive_runtime_checks: true
 
 # Disable swoosh api client as it is only required for production adapters.
 config :swoosh, :api_client, false

@@ -1,10 +1,23 @@
 import Config
 
+# Configure your database
+#
+# The MIX_TEST_PARTITION environment variable can be used
+# to provide built-in test partitioning in CI environment.
+# Run `mix help test` for more information.
+config :kokuraex, Kokuraex.Repo,
+  username: "postgres",
+  password: "postgres",
+  hostname: "localhost",
+  database: "kokuraex_test#{System.get_env("MIX_TEST_PARTITION")}",
+  pool: Ecto.Adapters.SQL.Sandbox,
+  pool_size: System.schedulers_online() * 2
+
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
 config :kokuraex, KokuraexWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
-  secret_key_base: "D1pF+ipggwyXIOVT09lllpaGvLYtS13InBgfmecHPruhWviyesHYekNK+oWtNMBE",
+  secret_key_base: "X1M6k9ERMPdHHj5XunsHg7ibr4kjGLeTPCXjDoWdm+qq3H88t49CBt4foqD/ZuuK",
   server: false
 
 # In test we don't send emails.
@@ -18,3 +31,7 @@ config :logger, level: :warning
 
 # Initialize plugs at runtime for faster test compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :phoenix_live_view,
+  # Enable helpful, but potentially expensive runtime checks
+  enable_expensive_runtime_checks: true
