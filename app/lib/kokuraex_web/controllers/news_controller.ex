@@ -16,7 +16,10 @@ defmodule KokuraexWeb.NewsController do
     [
       elixir: NewsFunction.github_latest_release_information("elixir-lang", "elixir"),
       phoenix: NewsFunction.hex_latest_release_information("phoenix"),
-      bumblebee: NewsFunction.github_latest_release_information("elixir-nx", "bumblebee")
+      phoenix_live_view: NewsFunction.hex_latest_release_information("phoenix_live_view"),
+      bumblebee: NewsFunction.github_latest_release_information("elixir-nx", "bumblebee"),
+      axon: NewsFunction.github_latest_release_information("elixir-nx", "axon"),
+      scholar: NewsFunction.github_latest_release_information("elixir-nx", "scholar")
     ]
   end
 end
