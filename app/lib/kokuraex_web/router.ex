@@ -20,7 +20,6 @@ defmodule KokuraexWeb.Router do
     get("/", PageController, :home)
     get("/about", AboutController, :home)
     get("/news", NewsController, :home)
-    get("/event", EventController, :home)
   end
 
   # Other scopes may use custom stacks.
