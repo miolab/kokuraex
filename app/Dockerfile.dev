@@ -1,4 +1,4 @@
-FROM elixir:1.17.3-slim
+FROM elixir:1.18.1-slim
 
 ENV MIX_HOME=/root/.mix \
   MIX_ENV=dev \
