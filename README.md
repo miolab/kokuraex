@@ -24,7 +24,7 @@ end
 
 ## Versions
 
-- Elixir 1.17.3 (Erlang/OTP 27)
+- Elixir 1.18.1 (Erlang/OTP 27)
 - Phoenix 1.7.18
 
 ## CI/CD tool
