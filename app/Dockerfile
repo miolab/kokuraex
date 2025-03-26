@@ -1,4 +1,4 @@
-FROM elixir:1.18.1-slim AS build
+FROM elixir:1.18.3-slim AS build
 
 ENV MIX_HOME=/root/.mix \
   MIX_ENV=prod \
@@ -37,7 +37,7 @@ RUN MIX_ENV=prod mix deps.compile
 RUN MIX_ENV=prod mix assets.deploy
 RUN MIX_ENV=prod mix release --overwrite
 
-FROM elixir:1.18.1-slim AS app
+FROM elixir:1.18.3-slim AS app
 
 ENV HOME=/app \
   PHX_SERVER=true
