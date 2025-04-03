@@ -19,6 +19,7 @@ defmodule KokuraexWeb.Router do
 
     get("/", PageController, :home)
     get("/about", AboutController, :home)
+    get("/event", EventController, :home)
     get("/news", NewsController, :home)
   end
 
