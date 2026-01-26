@@ -4,8 +4,8 @@ defmodule Kokuraex.MixProject do
   def project do
     [
       app: :kokuraex,
-      version: "0.3.3",
-      elixir: "~> 1.14",
+      version: "0.3.4",
+      elixir: "~> 1.19",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
@@ -62,7 +62,7 @@ defmodule Kokuraex.MixProject do
       {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
       {:mimic, "~> 1.7", only: :test},
       {:git_hooks, "~> 0.7.3", only: [:dev], runtime: false},
-      {:mix_test_watch, "~> 1.2", only: [:dev, :test], runtime: false}
+      {:mix_test_watch, "~> 1.4", only: [:dev, :test], runtime: false}
     ]
   end
 
