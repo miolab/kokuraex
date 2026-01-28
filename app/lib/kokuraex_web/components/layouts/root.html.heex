@@ -14,7 +14,7 @@
     <meta property="og:url" content="https://kokuraex.onrender.com" />
     <meta name="csrf-token" content={get_csrf_token()} />
     <.live_title suffix=" · Phoenix Framework">
-      <%= assigns[:page_title] || "kokura.ex (Elixir community in JP)" %>
+      {assigns[:page_title] || "kokura.ex (Elixir community in JP)"}
     </.live_title>
     <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -57,7 +57,7 @@
     </header>
 
     <main class="flex-grow mt-8 mx-5 text-gray-800">
-      <%= @inner_content %>
+      {@inner_content}
     </main>
 
     <footer class="bg-white text-gray-600 body-font mt-24">
