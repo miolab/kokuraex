@@ -4,7 +4,7 @@ defmodule Kokuraex.MixProject do
   def project do
     [
       app: :kokuraex,
-      version: "0.3.4",
+      version: "0.4.0",
       elixir: "~> 1.19",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
@@ -32,10 +32,10 @@ defmodule Kokuraex.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "1.7.21"},
+      {:phoenix, "1.8.3"},
       {:phoenix_html, "~> 4.1"},
       {:phoenix_live_reload, "~> 1.5", only: :dev},
-      {:phoenix_live_view, "~> 0.20.2"},
+      {:phoenix_live_view, "~> 1.1"},
       {:floki, ">= 0.36.0", only: :test},
       {:phoenix_live_dashboard, "~> 0.8.3"},
       {:esbuild, "~> 0.8", runtime: Mix.env() == :dev},
